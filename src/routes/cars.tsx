@@ -37,12 +37,7 @@ function CarsPage() {
   return (
     <div className="overflow-x-hidden">
       <SiteHeader />
-      <PageHero>
-        <h1 className="hero-in font-display text-6xl font-black md:text-8xl"><span className="text-primary">Our </span><span className="text-accent">Cars</span></h1>
-        <p className="hero-in mt-2 text-xl font-bold md:text-2xl" style={{ animationDelay: ".15s" }}>Comfortable. Reliable. Well-Maintained.</p>
-        <p className="hero-in mt-4 max-w-md font-medium" style={{ animationDelay: ".3s" }}>Choose from our wide range of vehicles for a safe, comfortable and memorable journey with Madhumitha Car Travels.</p>
-        <span className="hero-in mt-3 block h-1 w-60 rounded-full bg-accent" style={{ animationDelay: ".4s" }} />
-      </PageHero>
+      <PageHero title="Our Cars" />
 
       <section className="relative z-10 mx-auto -mt-12 max-w-7xl px-4 md:px-8">
         <Reveal variant="zoom" className="flex flex-wrap items-center gap-3 rounded-2xl bg-card p-3 shadow-card">
