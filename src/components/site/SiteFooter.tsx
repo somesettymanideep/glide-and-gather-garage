@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUp, ChevronRight, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Youtube } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
-import hero from "@/assets/hero.png.asset.json";
 import { ADDRESS, EMAIL, PHONE, PHONE_LINK } from "./data";
 
 export function Socials({ size = "h-9 w-9" }: { size?: string }) {
@@ -23,7 +22,7 @@ export function Socials({ size = "h-9 w-9" }: { size?: string }) {
 export function SiteFooter() {
   return (
     <footer className="bg-grad-footer text-primary-foreground">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-2 md:px-8 lg:grid-cols-[1.3fr_0.8fr_1fr_1.5fr_0.9fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-2 md:px-8 lg:grid-cols-[1.3fr_0.8fr_1fr_1.5fr]">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <img src={logo.url} alt="Madhumitha Car Travels" className="h-24 w-24 rounded-full" loading="lazy" />
@@ -42,7 +41,6 @@ export function SiteFooter() {
             <a href={PHONE_LINK} className="flex gap-3"><Phone className="h-5 w-5 shrink-0" />{PHONE}</a>
           </div>
         </div>
-        <img src={hero.url} alt="Vijayawada temple" loading="lazy" className="h-36 w-full rounded-xl border-2 border-primary-foreground/80 object-cover lg:h-40" />
       </div>
       <div className="border-t border-primary-foreground/15">
         <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-2 px-4 py-4 text-xs md:px-8">
