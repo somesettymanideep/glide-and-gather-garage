@@ -2,6 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Fuel, Headphones, Handshake, IndianRupee, KeyRound, MapPin, Phone, PhoneCall, Plane, Send, ShieldCheck, Armchair, Star, User, Users, Gauge } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.png.asset.json";
+import testiRoad from "@/assets/testi-road.jpg";
+import avatarRamesh from "@/assets/avatar-ramesh.jpg";
+import avatarPriya from "@/assets/avatar-priya.jpg";
+import avatarSrinivas from "@/assets/avatar-srinivas.jpg";
 import s1 from "@/assets/svc-selfdrive.jpg";
 import s2 from "@/assets/svc-keys.jpg";
 import s3 from "@/assets/svc-airport.jpg";
@@ -44,10 +48,19 @@ const SERVICES = [
   { img: s4, Icon: Clock, t: "Hourly Car Rentals", d: "Flexible vehicle rentals with 6-hour, 12-hour and 24-hour packages." },
 ];
 
+const WHY = [
+  { Icon: ShieldCheck, red: true, t: "Safe & Secure Travel", d: "Your safety is our top priority" },
+  { Icon: Car, red: false, t: "Well-Maintained Vehicles", d: "Ride in comfort and style" },
+  { Icon: User, red: true, t: "Professional Drivers", d: "Experienced & courteous drivers" },
+  { Icon: Headphones, red: false, t: "24/7 Support", d: "Always here to assist you" },
+  { Icon: IndianRupee, red: true, t: "Affordable Pricing", d: "Best rates for every trip" },
+  { Icon: MapPin, red: false, t: "Flexible Travel Options", d: "Local, Outstation & More" },
+];
+
 const REVIEWS = [
-  { q: "Excellent service! The car was in great condition and the booking process was very easy.", n: "Priya Sharma" },
-  { q: "Very punctual driver and a spotless Innova for our family trip to Tirupati.", n: "Ravi Kumar" },
-  { q: "Affordable hourly packages and friendly support. Highly recommended!", n: "Lakshmi Devi" },
+  { q: "Excellent service! The car was clean and the driver was very professional. Highly recommended!", n: "Ramesh Kumar", c: "Vijayawada", img: avatarRamesh },
+  { q: "A very reliable car rental service. Safe journey and very good support team. Keep it up!", n: "Priya Sharma", c: "Hyderabad", img: avatarPriya },
+  { q: "Affordable pricing and comfortable ride. Will book again for our next trip.", n: "Srinivas Rao", c: "Vijayawada", img: avatarSrinivas },
 ];
 
 function Home() {
