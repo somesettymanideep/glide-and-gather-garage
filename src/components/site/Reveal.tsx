@@ -9,7 +9,7 @@ export function Reveal({ children, className, variant = "up", delay = 0, as: Tag
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { el.classList.add("is-visible"); io.disconnect(); }
+      if (e?.isIntersecting) { el.classList.add("is-visible"); io.disconnect(); }
     }, { threshold: 0.15, rootMargin: "0px 0px -60px 0px" });
     io.observe(el);
     return () => io.disconnect();
