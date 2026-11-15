@@ -79,18 +79,6 @@ function ContactPage() {
         </Reveal>
       </section>
 
-      <section className="relative overflow-hidden">
-        <img src={hero.url} alt="" className="absolute inset-0 h-full w-full object-cover object-bottom" loading="lazy" />
-        <div className="absolute inset-0 bg-background/40" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-4 py-8 md:grid-cols-[1fr_1.6fr_auto] md:px-8">
-          <Reveal variant="left"><img src={car} alt="" className="mx-auto w-60 rounded-xl" loading="lazy" /></Reveal>
-          <Reveal className="rounded-xl bg-background/85 p-4 text-center font-display font-black italic">
-            <p className="text-3xl text-primary md:text-4xl">Travel with Confidence</p>
-            <p className="text-2xl md:text-3xl"><span className="text-base text-primary">with </span><span className="text-accent">Madhumitha Car Travels</span></p>
-          </Reveal>
-          <Reveal variant="right"><a href={PHONE_LINK} className="flex items-center gap-3 rounded-full border-4 border-primary-foreground bg-grad-green px-6 py-3 text-primary-foreground shadow-card"><Phone className="h-9 w-9" /><span className="font-semibold leading-tight">Call Us Now<br />{PHONE}</span></a></Reveal>
-        </div>
-      </section>
       <SiteFooter />
     </div>
   );
