@@ -64,6 +64,10 @@
   --color-chart-5: var(--chart-5);
   --color-sidebar: var(--sidebar);
   --color-brand-deep: var(--brand-deep);
+  --color-social-fb: oklch(0.5 0.18 260);
+  --color-social-ig: oklch(0.58 0.22 350);
+  --color-social-wa: oklch(0.65 0.17 150);
+  --color-star: oklch(0.8 0.17 80);
   --color-brand-soft: var(--brand-soft);
   --font-display: "Montserrat", sans-serif;
   --font-sans: "Rubik", sans-serif;

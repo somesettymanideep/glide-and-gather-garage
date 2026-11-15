@@ -6,10 +6,10 @@ import { ADDRESS, EMAIL, PHONE, PHONE_LINK } from "./data";
 
 export function Socials({ size = "h-9 w-9" }: { size?: string }) {
   const items = [
-    { I: Facebook, c: "bg-[oklch(0.5_0.18_260)]", l: "Facebook" },
-    { I: Instagram, c: "bg-[oklch(0.58_0.22_350)]", l: "Instagram" },
+    { I: Facebook, c: "bg-social-fb", l: "Facebook" },
+    { I: Instagram, c: "bg-social-ig", l: "Instagram" },
     { I: Youtube, c: "bg-accent", l: "YouTube" },
-    { I: MessageCircle, c: "bg-[oklch(0.65_0.17_150)]", l: "WhatsApp" },
+    { I: MessageCircle, c: "bg-social-wa", l: "WhatsApp" },
   ];
   return (
     <div className="flex gap-3">

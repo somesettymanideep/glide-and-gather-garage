@@ -34,11 +34,10 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-8 lg:flex">
           {NAV.map((n) => (
             <Link key={n.label} to={n.to} hash={"hash" in n ? n.hash : undefined}
-              activeOptions={{ exact: true, includeHash: false }}
-              className="relative py-2 text-sm font-semibold text-foreground transition-colors hover:text-accent data-[status=active]:text-accent"
-              activeProps={"hash" in n ? { "data-status": undefined } as never : undefined}>
+              activeOptions={{ exact: true, includeHash: "hash" in n }}
+              className="relative py-2 text-sm font-semibold text-foreground transition-colors hover:text-accent data-[status=active]:text-accent">
               {n.label}
-              {!("hash" in n) && <span className="nav-underline" />}
+              <span className="nav-underline" />
             </Link>
           ))}
         </nav>
