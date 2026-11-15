@@ -1,7 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Fuel, Headphones, Handshake, IndianRupee, KeyRound, MapPin, Phone, PhoneCall, Plane, Send, ShieldCheck, Armchair, Star, User, Users, Gauge } from "lucide-react";
+import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Fuel, Headphones, Handshake, IndianRupee, KeyRound, MapPin, MessageSquareText, Phone, PhoneCall, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Users, Gauge } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.png.asset.json";
+import testiRoad from "@/assets/testi-road.jpg";
+import avatarRamesh from "@/assets/avatar-ramesh.jpg";
+import avatarPriya from "@/assets/avatar-priya.jpg";
+import avatarSrinivas from "@/assets/avatar-srinivas.jpg";
 import s1 from "@/assets/svc-selfdrive.jpg";
 import s2 from "@/assets/svc-keys.jpg";
 import s3 from "@/assets/svc-airport.jpg";
@@ -44,10 +48,19 @@ const SERVICES = [
   { img: s4, Icon: Clock, t: "Hourly Car Rentals", d: "Flexible vehicle rentals with 6-hour, 12-hour and 24-hour packages." },
 ];
 
+const WHY = [
+  { Icon: ShieldCheck, red: true, t: "Safe & Secure Travel", d: "Your safety is our top priority" },
+  { Icon: Car, red: false, t: "Well-Maintained Vehicles", d: "Ride in comfort and style" },
+  { Icon: User, red: true, t: "Professional Drivers", d: "Experienced & courteous drivers" },
+  { Icon: Headphones, red: false, t: "24/7 Support", d: "Always here to assist you" },
+  { Icon: IndianRupee, red: true, t: "Affordable Pricing", d: "Best rates for every trip" },
+  { Icon: MapPin, red: false, t: "Flexible Travel Options", d: "Local, Outstation & More" },
+];
+
 const REVIEWS = [
-  { q: "Excellent service! The car was in great condition and the booking process was very easy.", n: "Priya Sharma" },
-  { q: "Very punctual driver and a spotless Innova for our family trip to Tirupati.", n: "Ravi Kumar" },
-  { q: "Affordable hourly packages and friendly support. Highly recommended!", n: "Lakshmi Devi" },
+  { q: "Excellent service! The car was clean and the driver was very professional. Highly recommended!", n: "Ramesh Kumar", c: "Vijayawada", img: avatarRamesh },
+  { q: "A very reliable car rental service. Safe journey and very good support team. Keep it up!", n: "Priya Sharma", c: "Hyderabad", img: avatarPriya },
+  { q: "Affordable pricing and comfortable ride. Will book again for our next trip.", n: "Srinivas Rao", c: "Vijayawada", img: avatarSrinivas },
 ];
 
 function Home() {
@@ -159,33 +172,72 @@ function Home() {
         </div>
       </section>
 
-      {/* WHY + TESTIMONIALS */}
-      <section className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:px-8 lg:grid-cols-2 lg:divide-x lg:divide-accent">
-        <Reveal variant="left">
-          <h2 className="mb-6 text-center font-display text-2xl font-black italic text-primary md:text-3xl">Why Travel With Madhumitha?</h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {[[Car, "Comfortable & Clean Cars"], [ShieldCheck, "Reliable Travel Experience"], [IndianRupee, "Flexible Rental Packages"], [Users, "Customer-Focused Service"]].map(([I, t]) => {
-              const Icon = I as typeof Car;
-              return <div key={t as string} className="flex flex-col items-center gap-2 text-center text-xs font-semibold text-primary"><span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft"><Icon className="h-7 w-7" /></span>{t as string}</div>;
-            })}
+      {/* WHY CHOOSE US */}
+      <section className="mx-auto max-w-7xl px-4 py-14 md:px-8">
+        <Reveal className="mb-10 text-center">
+          <div className="flex items-center justify-center gap-4">
+            <span className="hidden h-0.5 w-24 bg-primary sm:block" />
+            <h2 className="font-display text-3xl font-black italic md:text-4xl"><span className="text-primary">Why </span><span className="text-accent">Choose Us</span></h2>
+            <span className="hidden h-0.5 w-24 bg-primary sm:block" />
           </div>
+          <p className="mt-2 text-sm font-medium md:text-base">Your Trusted Travel Partner for a Comfortable and Safe Journey</p>
         </Reveal>
-        <Reveal variant="right" className="lg:pl-10">
-          <h2 className="mb-6 text-center font-display text-2xl font-black italic text-primary md:text-3xl">What Our Customers Say</h2>
-          <div className="flex items-center gap-3">
-            <button aria-label="Previous" onClick={() => setRev((rev + REVIEWS.length - 1) % REVIEWS.length)} className="rounded-full p-2 shadow-card"><ChevronLeft /></button>
-            <div key={rev} className="hero-in flex flex-1 items-center gap-4 rounded-xl bg-card p-4 shadow-card">
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-grad-green font-display text-2xl font-black text-primary-foreground">{REVIEWS[rev]!.n[0]}</span>
-              <div>
-                <div className="flex text-star">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
-                <p className="mt-1 text-sm">"{REVIEWS[rev]!.q}"</p>
-                <p className="mt-1 text-xs font-semibold">- {REVIEWS[rev]!.n}</p>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          {WHY.map((w, i) => (
+            <Reveal key={w.t} delay={i * 100}>
+              <div className="flex h-full flex-col items-center gap-3 rounded-2xl bg-card p-6 text-center shadow-card transition-transform hover:-translate-y-2">
+                <span className={`flex h-16 w-16 items-center justify-center rounded-full ${w.red ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary"}`}>
+                  <w.Icon className="h-8 w-8" />
+                </span>
+                <h3 className="text-sm font-bold text-primary">{w.t}</h3>
+                <p className="text-xs text-muted-foreground">{w.d}</p>
               </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="relative overflow-hidden py-14">
+        <img src={testiRoad} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background/30" />
+        <div className="relative mx-auto max-w-7xl px-4 md:px-8">
+          <Reveal className="mb-10 text-center">
+            <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-grad-red text-accent-foreground shadow-card"><MessageSquareText className="h-6 w-6" /></span>
+            <div className="flex items-center justify-center gap-4">
+              <span className="hidden h-0.5 w-24 bg-primary sm:block" />
+              <h2 className="font-display text-3xl font-black italic md:text-4xl"><span className="text-primary">What Our </span><span className="text-accent">Customers Say</span></h2>
+              <span className="hidden h-0.5 w-24 bg-primary sm:block" />
             </div>
-            <button aria-label="Next" onClick={() => setRev((rev + 1) % REVIEWS.length)} className="rounded-full p-2 shadow-card"><ChevronRight /></button>
+            <p className="mt-2 text-sm font-medium md:text-base">Real Experiences. Real Happiness.</p>
+          </Reveal>
+          <div className="flex items-center gap-3">
+            <button aria-label="Previous review" onClick={() => setRev((rev + REVIEWS.length - 1) % REVIEWS.length)} className="hidden shrink-0 rounded-full bg-card p-2 text-primary shadow-card transition-transform hover:-translate-x-0.5 sm:block"><ChevronLeft /></button>
+            <div key={rev} className="hero-in grid flex-1 gap-5 lg:grid-cols-3">
+              {[0, 1, 2].map((k) => {
+                const r = REVIEWS[(rev + k) % REVIEWS.length]!;
+                return (
+                  <div key={r.n} className={`flex items-center gap-4 rounded-2xl bg-card p-5 shadow-card ${k > 0 ? "hidden lg:flex" : ""}`}>
+                    <img src={r.img} alt={r.n} loading="lazy" className="h-20 w-20 shrink-0 rounded-full border-4 border-brand-soft object-cover" />
+                    <div>
+                      <Quote className="h-5 w-5 fill-primary text-primary" />
+                      <p className="mt-1 text-sm italic">"{r.q}"</p>
+                      <div className="mt-2 flex text-star">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
+                      <p className="mt-1 text-sm font-bold text-primary">{r.n}</p>
+                      <p className="text-xs text-muted-foreground">{r.c}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <button aria-label="Next review" onClick={() => setRev((rev + 1) % REVIEWS.length)} className="hidden shrink-0 rounded-full bg-card p-2 text-primary shadow-card transition-transform hover:translate-x-0.5 sm:block"><ChevronRight /></button>
           </div>
-          <div className="mt-3 flex justify-center gap-2">{REVIEWS.map((_, i) => <span key={i} className={`h-2 w-2 rounded-full ${i === rev ? "bg-accent" : "bg-border"}`} />)}</div>
-        </Reveal>
+          <div className="mt-6 flex items-center justify-center gap-2">
+            <button aria-label="Previous review" onClick={() => setRev((rev + REVIEWS.length - 1) % REVIEWS.length)} className="rounded-full bg-card p-2 text-primary shadow-card sm:hidden"><ChevronLeft className="h-4 w-4" /></button>
+            {REVIEWS.map((_, i) => <button key={i} aria-label={`Go to review ${i + 1}`} onClick={() => setRev(i)} className={`h-2.5 w-2.5 rounded-full transition-colors ${i === rev ? "bg-accent" : "bg-card shadow-card"}`} />)}
+            <button aria-label="Next review" onClick={() => setRev((rev + 1) % REVIEWS.length)} className="rounded-full bg-card p-2 text-primary shadow-card sm:hidden"><ChevronRight className="h-4 w-4" /></button>
+          </div>
+        </div>
       </section>
 
       <CtaBand title="Your Next Journey Starts Here!" actions={<>
