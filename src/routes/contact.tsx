@@ -27,14 +27,7 @@ function ContactPage() {
     <div className="overflow-x-hidden">
       <SiteHeader />
       <Toaster />
-      <PageHero>
-        <span className="hero-in inline-flex items-center gap-2 rounded-full bg-grad-green px-4 py-1 text-sm font-bold text-primary-foreground">GET IN TOUCH <Send className="h-3 w-3" /></span>
-        <h1 className="hero-in mt-3 font-display text-5xl font-black italic leading-[1.05] md:text-7xl" style={{ animationDelay: ".1s" }}>
-          <span className="block text-primary">Let's Plan Your</span><span className="block text-accent">Next Journey</span>
-        </h1>
-        <span className="hero-in mt-2 block h-1 w-72 rounded-full bg-accent" style={{ animationDelay: ".2s" }} />
-        <p className="hero-in mt-5 max-w-md text-lg font-semibold" style={{ animationDelay: ".3s" }}>Have a travel requirement? Get in touch with our team and let us help you find the right ride.</p>
-      </PageHero>
+      <PageHero title="Contact Us" />
 
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-8 lg:grid-cols-[0.75fr_1.25fr]">
         <Reveal variant="left" className="space-y-4">
