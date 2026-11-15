@@ -175,11 +175,11 @@ function Home() {
           <div className="flex items-center gap-3">
             <button aria-label="Previous" onClick={() => setRev((rev + REVIEWS.length - 1) % REVIEWS.length)} className="rounded-full p-2 shadow-card"><ChevronLeft /></button>
             <div key={rev} className="hero-in flex flex-1 items-center gap-4 rounded-xl bg-card p-4 shadow-card">
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-grad-green font-display text-2xl font-black text-primary-foreground">{REVIEWS[rev].n[0]}</span>
+              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-grad-green font-display text-2xl font-black text-primary-foreground">{REVIEWS[rev]!.n[0]}</span>
               <div>
                 <div className="flex text-star">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
-                <p className="mt-1 text-sm">"{REVIEWS[rev].q}"</p>
-                <p className="mt-1 text-xs font-semibold">- {REVIEWS[rev].n}</p>
+                <p className="mt-1 text-sm">"{REVIEWS[rev]!.q}"</p>
+                <p className="mt-1 text-xs font-semibold">- {REVIEWS[rev]!.n}</p>
               </div>
             </div>
             <button aria-label="Next" onClick={() => setRev((rev + 1) % REVIEWS.length)} className="rounded-full p-2 shadow-card"><ChevronRight /></button>
