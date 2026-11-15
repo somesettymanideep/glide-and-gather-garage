@@ -8,8 +8,6 @@ import { SiteFooter, Socials } from "@/components/site/SiteFooter";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { ADDRESS, CARS, EMAIL, PHONE, PHONE_LINK } from "@/components/site/data";
-import hero from "@/assets/hero.png.asset.json";
-import car from "@/assets/car-white.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
