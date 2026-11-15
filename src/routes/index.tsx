@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Fuel, Headphones, Handshake, IndianRupee, KeyRound, MapPin, Phone, PhoneCall, Plane, Send, ShieldCheck, Armchair, Star, User, Users, Gauge } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.png.asset.json";
-import carWhite from "@/assets/car-white.jpg";
 import s1 from "@/assets/svc-selfdrive.jpg";
 import s2 from "@/assets/svc-keys.jpg";
 import s3 from "@/assets/svc-airport.jpg";
