@@ -57,11 +57,11 @@ function Home() {
       <SiteHeader />
 
       {/* HERO */}
-      <section className="relative min-h-[640px] pt-24 md:min-h-[700px]">
+      <section className="relative min-h-[440px] pt-24 md:min-h-[500px]">
         <img src={hero.url} alt="Car on a riverside road near a temple and bridge" className="absolute inset-0 h-full w-full object-cover object-right" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent md:via-background/50" />
         <div className="relative mx-auto max-w-7xl px-4 pt-8 md:px-8 md:pt-12">
-          <h1 className="hero-in font-display text-5xl font-black italic leading-[1.05] md:text-7xl">
+          <h1 className="hero-in font-display text-3xl font-black italic leading-[1.05] md:text-5xl">
             <span className="block text-primary">Your Journey,</span>
             <span className="block text-accent">Our Responsibility.</span>
           </h1>
