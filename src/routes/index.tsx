@@ -200,7 +200,6 @@ function Home() {
       {/* TESTIMONIALS */}
       <section className="relative overflow-hidden py-14">
         <img src={testiRoad} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background/30" />
         <div className="relative mx-auto max-w-7xl px-4 md:px-8">
           <Reveal className="mb-10 text-center">
             <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-grad-red text-accent-foreground shadow-card"><MessageSquareText className="h-6 w-6" /></span>
