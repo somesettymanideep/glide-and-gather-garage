@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CarsRouteImport } from './routes/cars'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CarsCarIdRouteImport } from './routes/cars_.$carId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CarsCarIdRoute = CarsCarIdRouteImport.update({
+  id: '/cars_/$carId',
+  path: '/cars/$carId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cars': typeof CarsRoute
   '/contact': typeof ContactRoute
+  '/cars/$carId': typeof CarsCarIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cars': typeof CarsRoute
   '/contact': typeof ContactRoute
+  '/cars/$carId': typeof CarsCarIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cars': typeof CarsRoute
   '/contact': typeof ContactRoute
+  '/cars_/$carId': typeof CarsCarIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cars' | '/contact'
+  fullPaths: '/' | '/cars' | '/contact' | '/cars/$carId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cars' | '/contact'
-  id: '__root__' | '/' | '/cars' | '/contact'
+  to: '/' | '/cars' | '/contact' | '/cars/$carId'
+  id: '__root__' | '/' | '/cars' | '/contact' | '/cars_/$carId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CarsRoute: typeof CarsRoute
   ContactRoute: typeof ContactRoute
+  CarsCarIdRoute: typeof CarsCarIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cars_/$carId': {
+      id: '/cars_/$carId'
+      path: '/cars/$carId'
+      fullPath: '/cars/$carId'
+      preLoaderRoute: typeof CarsCarIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CarsRoute: CarsRoute,
   ContactRoute: ContactRoute,
+  CarsCarIdRoute: CarsCarIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
