@@ -1,19 +1,20 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUp, ChevronRight, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Youtube } from "lucide-react";
+import { ArrowUp, ChevronRight, Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
+import { FacebookIcon, InstagramIcon, WhatsappIcon, YoutubeIcon } from "./BrandIcons";
 import { ADDRESS, EMAIL, PHONE, PHONE_LINK } from "./data";
 
 export function Socials({ size = "h-9 w-9" }: { size?: string }) {
   const items = [
-    { I: Facebook, c: "bg-social-fb", l: "Facebook" },
-    { I: Instagram, c: "bg-social-ig", l: "Instagram" },
-    { I: Youtube, c: "bg-accent", l: "YouTube" },
-    { I: MessageCircle, c: "bg-social-wa", l: "WhatsApp" },
+    { I: FacebookIcon, l: "Facebook" },
+    { I: InstagramIcon, l: "Instagram" },
+    { I: YoutubeIcon, l: "YouTube" },
+    { I: WhatsappIcon, l: "WhatsApp" },
   ];
   return (
     <div className="flex gap-3">
-      {items.map(({ I, c, l }) => (
-        <a key={l} href="#" aria-label={l} className={`${c} ${size} flex items-center justify-center rounded-full text-primary-foreground transition-transform hover:-translate-y-1`}><I className="h-4 w-4" /></a>
+      {items.map(({ I, l }) => (
+        <a key={l} href="#" aria-label={l} className={`${size} flex items-center justify-center rounded-full bg-card shadow-card transition-transform hover:-translate-y-1`}><I className="h-[55%] w-[55%]" /></a>
       ))}
     </div>
   );

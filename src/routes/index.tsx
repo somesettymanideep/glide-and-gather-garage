@@ -89,8 +89,8 @@ function Home() {
       </section>
 
       {/* BOOKING BAR */}
-      <div className="relative z-10 mx-auto -mt-16 max-w-6xl px-4">
-        <Reveal variant="zoom">
+      <div className="relative z-10 mx-auto -mt-4 flex max-w-7xl justify-end px-4 md:-mt-2 md:px-8">
+        <Reveal variant="zoom" className="w-full max-w-6xl">
           <form onSubmit={(e) => e.preventDefault()} className="grid gap-3 rounded-2xl bg-card p-4 shadow-card md:grid-cols-[1fr_1fr_0.8fr_1fr_auto]">
             <Field icon={<User className="h-5 w-5" />}><input placeholder="Full Name" className="w-full bg-transparent outline-none" /></Field>
             <Field icon={<Phone className="h-5 w-5" />}><span className="font-semibold">+91</span><input placeholder="Phone Number" className="w-full bg-transparent outline-none" /></Field>
