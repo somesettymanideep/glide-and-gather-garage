@@ -22,7 +22,7 @@ export function Socials({ size = "h-9 w-9" }: { size?: string }) {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-grad-footer text-primary-foreground">
+    <footer className="border-t-4 border-accent bg-grad-footer text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-2 md:px-8 lg:grid-cols-[1.3fr_0.8fr_1fr_1.5fr]">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
