@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Fuel, Headphones, Handshake, IndianRupee, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Users, Gauge } from "lucide-react";
+import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Headphones, Handshake, IndianRupee, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Gauge } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.png.asset.json";
 import testiRoad from "@/assets/testi-road.jpg";
@@ -14,6 +14,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal } from "@/components/site/Reveal";
 import { CARS } from "@/components/site/data";
+import { CarCard } from "@/components/site/CarCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,6 +23,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Comfortable, reliable and affordable car rentals, airport transfers and hourly packages in Vijayawada." },
       { property: "og:title", content: "Madhumitha Car Travels | Your Journey, Our Responsibility" },
       { property: "og:description", content: "Book sedans, SUVs and hatchbacks for 6, 12 or 24 hours in Vijayawada." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -151,21 +154,10 @@ function Home() {
       {/* FLEET */}
       <section className="mx-auto max-w-7xl px-4 py-10 md:px-8">
         <SectionTitle a="Find the Perfect" b="Car for Your Journey" sub="Choose from our range of comfortable and well-maintained vehicles." />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {CARS.map((c, i) => (
-            <Reveal key={c.name} delay={(i % 3) * 100}>
-              <div className="flex items-center gap-3 rounded-xl bg-card p-3 shadow-card transition-transform hover:-translate-y-1">
-                <img src={c.img} alt={c.name} loading="lazy" className="h-16 w-28 object-contain" />
-                <div className="flex-1">
-                  <p className="font-semibold text-primary">{c.type}</p>
-                  <p className="text-sm font-medium">{c.name}</p>
-                  <p className="mt-1 flex gap-3 text-xs text-muted-foreground"><span className="flex items-center gap-1"><Users className="h-3 w-3" />{c.seats}</span><span className="flex items-center gap-1"><Fuel className="h-3 w-3" />{c.fuel}</span></p>
-                </div>
-                <div className="text-xs">
-                  {["6 Hours", "12 Hours", "24 Hours"].map((h) => <p key={h} className="flex justify-between gap-4 font-medium"><span>{h}</span><span>₹---</span></p>)}
-                  <Link to="/contact" className="mt-2 block rounded bg-grad-red py-1 text-center font-semibold text-accent-foreground">Book Now</Link>
-                </div>
-              </div>
+            <Reveal key={c.code} delay={(i % 3) * 120}>
+              <CarCard car={c} />
             </Reveal>
           ))}
         </div>

@@ -16,6 +16,8 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Call, email or send a booking enquiry to Madhumitha Car Travels, Vijayawada." },
       { property: "og:title", content: "Let's Plan Your Next Journey | Madhumitha Car Travels" },
       { property: "og:description", content: "Send a booking enquiry and we'll get back to you soon." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ContactPage,

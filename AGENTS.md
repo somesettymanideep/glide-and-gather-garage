@@ -29,3 +29,4 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 - Shared site chrome (header, footer, CTA band, page hero, Reveal) lives in src/components/site; pages compose them so all routes stay visually consistent.
+- Home and fleet pages use the shared CarCard and fleet data so specifications, imagery, rates, and booking actions stay consistent.

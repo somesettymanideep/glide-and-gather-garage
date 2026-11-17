@@ -1,0 +1,4 @@
+- [x] Apply the Our Cars card layout to the home-page fleet using one shared card.
+- [x] Keep the car image area plain and check desktop/mobile layouts.
+- [ ] Replace example rates with actual rates — awaiting the owner's rate list.
+- [ ] Replace repeated stand-ins with distinct real fleet photos on plain backgrounds — awaiting one original photo per car.
