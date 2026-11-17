@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Fuel, Headphones, Handshake, IndianRupee, KeyRound, MapPin, MessageSquareText, Phone, PhoneCall, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Users, Gauge } from "lucide-react";
+import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Fuel, Headphones, Handshake, IndianRupee, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Users, Gauge } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.png.asset.json";
 import testiRoad from "@/assets/testi-road.jpg";
@@ -12,9 +12,8 @@ import s3 from "@/assets/svc-airport.jpg";
 import s4 from "@/assets/svc-clock.jpg";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { CtaBand } from "@/components/site/CtaBand";
 import { Reveal } from "@/components/site/Reveal";
-import { CARS, PHONE_LINK } from "@/components/site/data";
+import { CARS } from "@/components/site/data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -239,10 +238,6 @@ function Home() {
         </div>
       </section>
 
-      <CtaBand title="Your Next Journey Starts Here!" actions={<>
-        <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-primary-foreground bg-grad-red px-6 py-3 font-semibold text-accent-foreground">Book Your Car <ArrowRight className="h-4 w-4" /></Link>
-        <a href={PHONE_LINK} className="inline-flex items-center gap-2 rounded-full border-2 border-primary-foreground bg-grad-green px-6 py-3 font-semibold text-primary-foreground"><PhoneCall className="h-4 w-4" /> Call Us Now</a>
-      </>}>Book your comfortable ride with Madhumitha Car Travels today.</CtaBand>
       <SiteFooter />
     </div>
   );
