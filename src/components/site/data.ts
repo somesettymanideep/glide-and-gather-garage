@@ -14,16 +14,16 @@ export const ADDRESS = [
 ];
 
 export type Category = "Sedan" | "SUV" | "Hatchback" | "Luxury";
-export type Car = { name: string; type: string; category: Category; seats: number; fuel: string; img: string };
+export type Car = { code: string; name: string; type: string; category: Category; seats: number; fuel: string; transmission: string; price: number; img: string };
 
 export const CARS: Car[] = [
-  { name: "Toyota Etios", type: "Sedan Car", category: "Sedan", seats: 5, fuel: "Petrol", img: white },
-  { name: "Honda City", type: "Sedan Car", category: "Sedan", seats: 5, fuel: "Petrol", img: white },
-  { name: "Maruti Dzire", type: "Sedan Car", category: "Sedan", seats: 5, fuel: "Petrol", img: blue },
-  { name: "Toyota Innova", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", img: suv },
-  { name: "Toyota Fortuner", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", img: suv },
-  { name: "Hyundai Creta", type: "SUV", category: "SUV", seats: 5, fuel: "Petrol", img: blue },
-  { name: "Maruti Swift", type: "Hatchback", category: "Hatchback", seats: 5, fuel: "Petrol", img: red },
-  { name: "Baleno", type: "Hatchback", category: "Hatchback", seats: 5, fuel: "Petrol", img: blue },
-  { name: "Honda Accord", type: "Luxury Car", category: "Luxury", seats: 5, fuel: "Hybrid", img: white },
+  { code: "MC100", name: "Maruti Suzuki Swift", type: "Hatchback", category: "Hatchback", seats: 5, fuel: "Petrol", transmission: "Manual", price: 1500, img: white },
+  { code: "MC101", name: "Hyundai i20", type: "Hatchback", category: "Hatchback", seats: 5, fuel: "Petrol", transmission: "Manual", price: 1800, img: white },
+  { code: "MC102", name: "Maruti Baleno", type: "Hatchback", category: "Hatchback", seats: 5, fuel: "Petrol", transmission: "Automatic", price: 2000, img: blue },
+  { code: "MC103", name: "Hyundai Creta", type: "SUV", category: "SUV", seats: 5, fuel: "Diesel", transmission: "Manual", price: 2500, img: suv },
+  { code: "MC104", name: "Kia Seltos", type: "SUV", category: "SUV", seats: 5, fuel: "Petrol", transmission: "Automatic", price: 2800, img: suv },
+  { code: "MC105", name: "Toyota Innova Crysta", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3500, img: white },
+  { code: "MC106", name: "Maruti Ertiga", type: "SUV", category: "SUV", seats: 7, fuel: "Petrol", transmission: "Manual", price: 2500, img: white },
+  { code: "MC107", name: "Toyota Fortuner", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Automatic", price: 5500, img: red },
+  { code: "MC108", name: "Mercedes-Benz E-Class", type: "Luxury Car", category: "Luxury", seats: 5, fuel: "Diesel", transmission: "Automatic", price: 8000, img: white },
 ];

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Car, ChevronDown, Fuel, Gem, Headphones, IndianRupee, LayoutGrid, ShieldCheck, User, UserCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, CalendarCheck, Car, ChevronDown, Eye, Fuel, Gem, Headphones, IndianRupee, LayoutGrid, Settings, ShieldCheck, Snowflake, User, UserCheck } from "lucide-react";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -31,7 +31,7 @@ function CarsPage() {
   const [sort, setSort] = useState("Price");
   const list = useMemo(() => {
     const l = tab === "All" ? CARS : CARS.filter((c) => c.category === tab);
-    return sort === "Seats" ? [...l].sort((a, b) => b.seats - a.seats) : sort === "Name" ? [...l].sort((a, b) => a.name.localeCompare(b.name)) : l;
+    return sort === "Seats" ? [...l].sort((a, b) => b.seats - a.seats) : sort === "Name" ? [...l].sort((a, b) => a.name.localeCompare(b.name)) : [...l].sort((a, b) => a.price - b.price);
   }, [tab, sort]);
 
   return (
@@ -56,16 +56,25 @@ function CarsPage() {
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((c, i) => (
-            <Reveal key={c.name} delay={(i % 3) * 120}>
-              <article className="group relative overflow-hidden rounded-2xl bg-card p-4 text-center shadow-card transition-transform hover:-translate-y-2">
-                <span className="absolute left-3 top-3 h-14 w-14 bg-[linear-gradient(135deg,var(--accent)_0_33%,var(--primary-foreground)_33%_45%,var(--primary)_45%_70%,transparent_70%)]" />
-                <div className="rounded-xl bg-gradient-to-b from-brand-soft to-card"><img src={c.img} alt={c.name} loading="lazy" className="mx-auto h-36 object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105" /></div>
-                <h3 className="mt-3 text-xl font-semibold">{c.name}</h3>
-                <p className="mt-1 flex items-center justify-center gap-2 text-sm"><User className="h-4 w-4" />{c.seats} Seater | <Fuel className="h-4 w-4" />{c.fuel}</p>
-                <div className="mt-3 grid grid-cols-3 divide-x rounded-lg bg-muted py-2">
-                  {["6 Hrs", "12 Hrs", "24 Hrs"].map((h) => <div key={h}><p className="font-semibold">{h}</p><p className="text-sm">₹---</p></div>)}
+            <Reveal key={c.code} delay={(i % 3) * 120}>
+              <article className="group relative overflow-hidden rounded-2xl bg-card p-5 text-center shadow-card transition-transform hover:-translate-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-grad-green px-3 py-1 text-xs font-bold text-primary-foreground"><BadgeCheck className="h-3.5 w-3.5" />Available</span>
+                  <span className="rounded-full bg-brand-soft px-3 py-1 text-xs font-bold text-primary">{c.code}</span>
                 </div>
-                <Link to="/contact" className="mt-4 inline-flex items-center gap-2 rounded-full bg-grad-red px-10 py-2 font-semibold text-accent-foreground shadow-card">Book Now <ArrowRight className="h-4 w-4" /></Link>
+                <img src={c.img} alt={c.name} loading="lazy" className="mx-auto mt-2 h-36 object-contain transition-transform duration-500 group-hover:scale-105" />
+                <h3 className="mt-2 text-xl font-bold">{c.name}</h3>
+                <div className="mx-auto mt-3 grid max-w-xs grid-cols-2 gap-x-4 gap-y-2 text-left text-sm font-medium">
+                  <p className="flex items-center gap-2"><User className="h-4 w-4 shrink-0" />{c.seats} Seater</p>
+                  <p className="flex items-center gap-2"><Fuel className="h-4 w-4 shrink-0" />{c.fuel}</p>
+                  <p className="flex items-center gap-2"><Settings className="h-4 w-4 shrink-0" />{c.transmission}</p>
+                  <p className="flex items-center gap-2"><Snowflake className="h-4 w-4 shrink-0" />AC</p>
+                </div>
+                <p className="mt-4 rounded-xl bg-brand-soft py-2.5 font-display text-2xl font-black text-primary">₹{c.price.toLocaleString("en-IN")} <span className="text-sm font-semibold text-foreground">/ day</span></p>
+                <div className="mt-3 grid grid-cols-2 gap-3">
+                  <Link to="/contact" className="inline-flex items-center justify-center gap-1.5 rounded-lg border-2 border-primary px-2 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-brand-soft"><Eye className="h-4 w-4" />View Details</Link>
+                  <Link to="/contact" className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-grad-green px-2 py-2.5 text-sm font-bold text-primary-foreground shadow-card"><CalendarCheck className="h-4 w-4" />Book Now</Link>
+                </div>
               </article>
             </Reveal>
           ))}
