@@ -1,9 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Car, ChevronDown, Gem, Headphones, IndianRupee, LayoutGrid, ShieldCheck, UserCheck } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { Car, ChevronDown, Gem, Headphones, IndianRupee, LayoutGrid, ShieldCheck, UserCheck } from "lucide-react";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { CtaBand } from "@/components/site/CtaBand";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { CARS, type Category } from "@/components/site/data";
@@ -73,9 +72,6 @@ function CarsPage() {
         </Reveal>
       </section>
 
-      <CtaBand title="Ready to Ride?" actions={
-        <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-primary-foreground bg-grad-red px-8 py-3 text-lg font-semibold text-accent-foreground">Book Your Car <ArrowRight className="h-4 w-4" /></Link>
-      }>Book your favourite car today and travel with confidence!</CtaBand>
       <SiteFooter />
     </div>
   );
