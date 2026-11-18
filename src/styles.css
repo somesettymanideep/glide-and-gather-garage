@@ -69,6 +69,7 @@
   --color-social-wa: oklch(0.65 0.17 150);
   --color-star: oklch(0.8 0.17 80);
   --color-brand-soft: var(--brand-soft);
+  --color-car-photo: var(--car-photo);
   --font-display: "Montserrat", sans-serif;
   --font-sans: "Rubik", sans-serif;
   --color-sidebar-foreground: var(--sidebar-foreground);
@@ -116,6 +117,7 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
   --brand-deep: oklch(0.3 0.09 150);
   --brand-soft: oklch(0.95 0.04 145);
+  --car-photo: #c4c8c9;
   --gradient-red: linear-gradient(180deg, oklch(0.6 0.23 27), oklch(0.5 0.21 27));
   --gradient-green: linear-gradient(180deg, oklch(0.5 0.15 148), oklch(0.36 0.11 150));
   --gradient-footer: linear-gradient(180deg, oklch(0.34 0.1 150), oklch(0.24 0.07 152));
