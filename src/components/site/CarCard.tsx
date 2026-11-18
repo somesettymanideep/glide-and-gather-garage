@@ -6,15 +6,13 @@ import { WhatsappIcon } from "./BrandIcons";
 
 export function CarCard({ car }: { car: Car }) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-card p-5 text-center shadow-card transition-transform hover:-translate-y-2">
-      <div className="flex items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-grad-green px-3 py-1 text-xs font-bold text-primary-foreground"><BadgeCheck className="h-3.5 w-3.5" />Available</span>
-        <span className="rounded-full bg-brand-soft px-3 py-1 text-xs font-bold text-primary">{car.code}</span>
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-card text-center shadow-card transition-transform hover:-translate-y-2">
+      <div className="relative h-44 w-full overflow-hidden bg-muted">
+        <img src={car.img} alt={car.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-grad-green px-3 py-1 text-xs font-bold text-primary-foreground shadow-card"><BadgeCheck className="h-3.5 w-3.5" />Available</span>
       </div>
-      <div className="mt-3 flex h-36 items-center justify-center overflow-hidden rounded-lg bg-muted">
-        <img src={car.img} alt={car.name} loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
-      </div>
-      <h3 className="mt-2 flex min-h-14 items-center justify-center text-xl font-bold">{car.name}</h3>
+      <div className="flex flex-1 flex-col p-5">
+      <h3 className="mt-1 flex min-h-14 items-center justify-center text-xl font-bold">{car.name}</h3>
       <div className="mx-auto mt-3 grid w-full max-w-xs grid-cols-2 gap-x-4 gap-y-2 text-left text-sm font-medium">
         <p className="flex items-center gap-2"><User className="h-4 w-4 shrink-0" />{car.seats} Seater</p>
         <p className="flex items-center gap-2"><Fuel className="h-4 w-4 shrink-0" />{car.fuel}</p>
@@ -25,6 +23,7 @@ export function CarCard({ car }: { car: Car }) {
       <div className="mt-3 grid grid-cols-2 gap-3">
         <Button asChild variant="outline" className="h-11 gap-1.5 border-2 border-primary px-2 font-bold text-primary hover:bg-brand-soft hover:text-primary"><Link to="/cars/$carId" params={{ carId: car.code }}><Eye />View Details</Link></Button>
         <Button asChild className="h-11 gap-1.5 bg-grad-green px-2 font-bold shadow-card"><a href={carBookingUrl(car)} target="_blank" rel="noopener noreferrer"><WhatsappIcon />Book Now</a></Button>
+      </div>
       </div>
     </article>
   );
