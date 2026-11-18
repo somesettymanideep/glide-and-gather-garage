@@ -1,0 +1,3 @@
+export function pageMeta(title: string, description: string) {
+  return { meta: [{ title: `${title} | Madhumitha Car Travels` }, { name: "description", content: description }, { property: "og:title", content: `${title} | Madhumitha Car Travels` }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }, { name: "robots", content: "noindex, nofollow" }] };
+}

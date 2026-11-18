@@ -2,7 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Calendar, CalendarDays, Car, ChevronDown, Clock, Mail, MapPin, MessageSquare, Phone, Send, ShieldCheck, User } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { toast } from "sonner";
-import { Toaster } from "@/components/ui/sonner";
+import { Button } from "@/components/ui/button";
+import { useServerFn } from "@tanstack/react-start";
+import { submitEnquiry } from "@/lib/enquiries.functions";
+import { enquiryFromForm } from "@/lib/enquiry-schema";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter, Socials } from "@/components/site/SiteFooter";
 import { PageHero } from "@/components/site/PageHero";
@@ -25,10 +28,11 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const saveEnquiry = useServerFn(submitEnquiry);
   return (
     <div className="overflow-x-hidden">
       <SiteHeader />
-      <Toaster />
       <PageHero title="Contact Us" />
 
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:px-8 lg:grid-cols-[0.75fr_1.25fr]">
@@ -50,22 +54,28 @@ function ContactPage() {
             <div className="flex items-center gap-3 bg-grad-green px-6 py-4 font-display text-2xl font-bold text-primary-foreground"><CalendarDays />Booking Enquiry</div>
             <div className="flex items-center bg-grad-red px-6 py-4 text-sm font-medium text-accent-foreground md:justify-end">Fill the form and we'll get back to you soon!</div>
           </div>
-          <form className="grid gap-5 p-6 md:grid-cols-2" onSubmit={(e) => { e.preventDefault(); setSent(true); toast.success("Booking request received! We'll call you shortly."); (e.target as HTMLFormElement).reset(); }}>
-            <F label="Full Name" req icon={<User className="h-4 w-4" />}><input required placeholder="Enter your name" className="inp" /></F>
-            <F label="Phone Number" req icon={<Phone className="h-4 w-4" />}><span className="border-r pr-2 font-medium">+91</span><input required type="tel" placeholder="Enter mobile number" className="inp" /></F>
-            <F label="Email Address" icon={<Mail className="h-4 w-4" />}><input type="email" placeholder="Enter your email address" className="inp" /></F>
-            <F label="Pickup Location" icon={<MapPin className="h-4 w-4" />}><input placeholder="Enter pickup location" className="inp" /></F>
-            <F label="Drop Location" icon={<MapPin className="h-4 w-4" />}><input placeholder="Enter drop location" className="inp" /></F>
-            <F label="Pickup Date" icon={<Calendar className="h-4 w-4" />}><input type="date" className="inp" /></F>
-            <F label="Pickup Time" icon={<Clock className="h-4 w-4" />}><input type="time" className="inp" /></F>
-            <F label="Rental Duration" icon={<Car className="h-4 w-4" />}><select className="inp appearance-none"><option>6 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></F>
-            <div className="md:col-span-2"><F label="Select Vehicle" icon={<Car className="h-4 w-4" />}><select className="inp appearance-none"><option>Choose a vehicle</option>{CARS.map((c) => <option key={c.name}>{c.name}</option>)}</select><ChevronDown className="h-4 w-4" /></F></div>
+          <form className="grid gap-5 p-6 md:grid-cols-2" onSubmit={async (e) => {
+            e.preventDefault(); const form = e.currentTarget; setBusy(true);
+            try { await saveEnquiry({ data: enquiryFromForm(form, "contact") }); setSent(true); toast.success("Your enquiry has been saved."); form.reset(); }
+            catch (error) { toast.error(error instanceof Error ? error.message : "Unable to save your enquiry. Please try again."); }
+            finally { setBusy(false); }
+          }}>
+            <input name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+            <F label="Full Name" req icon={<User className="h-4 w-4" />}><input name="name" required maxLength={100} placeholder="Enter your name" className="inp" /></F>
+            <F label="Phone Number" req icon={<Phone className="h-4 w-4" />}><span className="border-r pr-2 font-medium">+91</span><input name="phone" required minLength={7} maxLength={20} type="tel" placeholder="Enter mobile number" className="inp" /></F>
+            <F label="Email Address" icon={<Mail className="h-4 w-4" />}><input name="email" maxLength={255} type="email" placeholder="Enter your email address" className="inp" /></F>
+            <F label="Pickup Location" icon={<MapPin className="h-4 w-4" />}><input name="pickup" maxLength={250} placeholder="Enter pickup location" className="inp" /></F>
+            <F label="Drop Location" icon={<MapPin className="h-4 w-4" />}><input name="destination" maxLength={250} placeholder="Enter drop location" className="inp" /></F>
+            <F label="Pickup Date" icon={<Calendar className="h-4 w-4" />}><input name="pickup_date" type="date" className="inp" /></F>
+            <F label="Pickup Time" icon={<Clock className="h-4 w-4" />}><input name="pickup_time" type="time" className="inp" /></F>
+            <F label="Rental Duration" icon={<Car className="h-4 w-4" />}><select name="duration" className="inp appearance-none"><option>6 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></F>
+            <div className="md:col-span-2"><F label="Select Vehicle" icon={<Car className="h-4 w-4" />}><select name="vehicle" className="inp appearance-none"><option value="">Choose a vehicle</option>{CARS.map((c) => <option key={c.name}>{c.name}</option>)}</select><ChevronDown className="h-4 w-4" /></F></div>
             <label className="md:col-span-2">
               <span className="mb-2 flex items-center gap-2 text-sm font-semibold"><MessageSquare className="h-4 w-4" />Additional Requirements</span>
-              <textarea rows={3} placeholder="Any special requests?" className="w-full rounded-lg border bg-background px-4 py-3 outline-none focus:border-primary" />
+              <textarea name="message" maxLength={2000} rows={3} placeholder="Any special requests?" className="w-full rounded-lg border bg-background px-4 py-3 outline-none focus:border-primary" />
             </label>
             <div className="md:col-span-2">
-              <button className="flex w-full items-center justify-center gap-3 rounded-lg bg-grad-red py-3 text-lg font-semibold text-accent-foreground shadow-card transition-transform hover:-translate-y-0.5"><Send className="h-5 w-5" />{sent ? "Request Sent — Send Another" : "Submit Booking Request"}<ArrowRight className="h-5 w-5" /></button>
+              <Button type="submit" disabled={busy} className="h-auto w-full gap-3 whitespace-normal rounded-lg bg-grad-red py-3 text-lg font-semibold text-accent-foreground shadow-card"><Send className="h-5 w-5" />{busy ? "Saving…" : sent ? "Request Sent — Send Another" : "Submit Booking Request"}<ArrowRight className="h-5 w-5" /></Button>
               <p className="mt-2 flex items-center justify-center gap-2 text-xs"><ShieldCheck className="h-4 w-4 text-primary" />Your information is secure with us.</p>
             </div>
           </form>

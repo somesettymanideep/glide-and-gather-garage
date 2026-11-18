@@ -46,6 +46,7 @@ export function SiteFooter() {
       <div className="border-t border-primary-foreground/15">
         <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-2 px-4 py-4 text-xs md:px-8">
           <span>© 2026 Madhumitha Car Travels. All Rights Reserved.</span>
+          <Link to="/admin" className="underline underline-offset-4">Admin</Link>
           <span>Privacy Policy &nbsp;|&nbsp; Terms &amp; Conditions</span>
         </div>
       </div>

@@ -16,6 +16,11 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal } from "@/components/site/Reveal";
 import { CARS } from "@/components/site/data";
 import { CarCard } from "@/components/site/CarCard";
+import { useServerFn } from "@tanstack/react-start";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { submitEnquiry } from "@/lib/enquiries.functions";
+import { enquiryFromForm } from "@/lib/enquiry-schema";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,6 +73,8 @@ const REVIEWS = [
 
 function Home() {
   const [rev, setRev] = useState(0);
+  const [bookingBusy, setBookingBusy] = useState(false);
+  const saveEnquiry = useServerFn(submitEnquiry);
   return (
     <div className="overflow-x-hidden">
       <SiteHeader />
@@ -95,12 +102,18 @@ function Home() {
       {/* BOOKING BAR */}
       <div className="relative z-10 mx-auto -mt-4 flex max-w-7xl justify-end px-4 md:-mt-2 md:px-8">
         <Reveal variant="zoom" className="w-full max-w-6xl">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-3 rounded-2xl bg-card p-4 shadow-card md:grid-cols-[1fr_1fr_0.8fr_1fr_auto]">
-            <Field icon={<User className="h-5 w-5" />}><input placeholder="Full Name" className="w-full bg-transparent outline-none" /></Field>
-            <Field icon={<Phone className="h-5 w-5" />}><span className="font-semibold">+91</span><input placeholder="Phone Number" className="w-full bg-transparent outline-none" /></Field>
-            <Field icon={<Car className="h-5 w-5" />}><select className="w-full appearance-none bg-transparent font-semibold outline-none"><option>6 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></Field>
-            <Field icon={<MapPin className="h-5 w-5" />}><input placeholder="Drop Location" className="w-full bg-transparent outline-none" /></Field>
-            <button className="inline-flex items-center justify-center gap-2 rounded-lg bg-grad-red px-6 py-3 font-semibold text-accent-foreground"><Send className="h-4 w-4" /> Request a Booking</button>
+          <form onSubmit={async (e) => {
+            e.preventDefault(); const form = e.currentTarget; setBookingBusy(true);
+            try { await saveEnquiry({ data: enquiryFromForm(form, "booking") }); toast.success("Your booking request has been saved."); form.reset(); }
+            catch (error) { toast.error(error instanceof Error ? error.message : "Unable to save your request. Please try again."); }
+            finally { setBookingBusy(false); }
+          }} className="grid gap-3 rounded-2xl bg-card p-4 shadow-card md:grid-cols-[1fr_1fr_0.8fr_1fr_auto]">
+            <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+            <Field icon={<User className="h-5 w-5" />}><input name="name" required maxLength={100} placeholder="Full Name" className="w-full min-w-0 bg-transparent outline-none" /></Field>
+            <Field icon={<Phone className="h-5 w-5" />}><span className="font-semibold">+91</span><input name="phone" required type="tel" minLength={7} maxLength={20} placeholder="Phone Number" className="w-full min-w-0 bg-transparent outline-none" /></Field>
+            <Field icon={<Car className="h-5 w-5" />}><select name="duration" className="w-full appearance-none bg-transparent font-semibold outline-none"><option>6 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></Field>
+            <Field icon={<MapPin className="h-5 w-5" />}><input name="destination" maxLength={250} placeholder="Drop Location" className="w-full min-w-0 bg-transparent outline-none" /></Field>
+            <Button type="submit" disabled={bookingBusy} className="h-auto rounded-lg bg-grad-red px-6 py-3 font-semibold text-accent-foreground"><Send className="h-4 w-4" />{bookingBusy ? "Saving…" : "Request a Booking"}</Button>
           </form>
         </Reveal>
       </div>
