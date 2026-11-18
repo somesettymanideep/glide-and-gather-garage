@@ -119,7 +119,7 @@ function Home() {
       </div>
 
       {/* ABOUT */}
-      <section id="about" className="mx-auto grid max-w-7xl scroll-mt-24 items-center gap-10 px-4 py-16 md:px-8 lg:grid-cols-[1.1fr_1.2fr_0.7fr]">
+      <section id="about" className="mx-auto grid max-w-7xl scroll-mt-24 items-center gap-10 px-4 py-16 md:px-8 lg:grid-cols-2">
         <Reveal variant="left" className="relative">
           <img src={aboutBanner.url} alt="Our fleet on a scenic highway — Your Journey, Our Priority" className="h-72 w-full rounded-2xl object-cover shadow-card" loading="lazy" />
           <div className="absolute -bottom-6 right-4 flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-star bg-gradient-to-b from-brand-deep to-foreground text-center font-display text-primary-foreground shadow-card">
@@ -131,17 +131,17 @@ function Home() {
           <p className="flex items-center gap-2 text-sm font-bold tracking-wide text-accent">— ABOUT US <span className="h-px w-32 bg-accent" /></p>
           <h2 className="mt-2 font-display text-3xl font-black italic md:text-4xl"><span className="text-accent">Travel </span><span className="text-primary">Beyond</span> <span className="text-accent">Expectations</span></h2>
           <p className="mt-4 text-sm leading-relaxed">Madhumitha Car Travels is your trusted travel partner for safe, comfortable and affordable journeys. We are committed to delivering reliable transportation services with customer satisfaction at the heart.</p>
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[[ShieldCheck, "Customer Satisfaction"], [Armchair, "Comfortable Journeys"], [Handshake, "Reliable Service"], [Headphones, "Professional Support"]].map(([I, t]) => {
+              const Icon = I as typeof ShieldCheck;
+              return (
+                <div key={t as string} className="flex flex-col items-center gap-2 rounded-xl bg-card p-3 text-center text-xs font-semibold shadow-card">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-soft text-primary"><Icon className="h-5 w-5" /></span>{t as string}
+                </div>
+              );
+            })}
+          </div>
           <Link to="/cars" className="mt-6 inline-flex items-center gap-2 rounded-full bg-grad-red px-6 py-3 text-sm font-semibold text-accent-foreground shadow-card">Discover Our Story <ArrowRight className="h-4 w-4" /></Link>
-        </Reveal>
-        <Reveal variant="right" className="grid grid-cols-2 border-border lg:border-l lg:pl-6">
-          {[[ShieldCheck, "Customer Satisfaction"], [Armchair, "Comfortable Journeys"], [Handshake, "Reliable Service"], [Headphones, "Professional Support"]].map(([I, t], i) => {
-            const Icon = I as typeof ShieldCheck;
-            return (
-              <div key={t as string} className={`flex flex-col items-center gap-2 p-4 text-center text-sm font-semibold ${i < 2 ? "border-b" : ""} ${i % 2 === 0 ? "border-r" : ""}`}>
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-primary"><Icon className="h-6 w-6" /></span>{t as string}
-              </div>
-            );
-          })}
         </Reveal>
       </section>
 
