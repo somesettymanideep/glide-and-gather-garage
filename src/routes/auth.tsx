@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { LockKeyhole } from "lucide-react";
-import { LovableMark } from "@lovable.dev/cloud-auth-js/react";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -39,7 +38,7 @@ function AuthPage() {
     } catch (error) { setFeedback(error instanceof Error ? error.message : "Unable to sign in. Please try again."); }
     finally { setBusy(false); }
   }
-  async function social(provider: "google" | "lovable") {
+  async function social(provider: "google") {
     setBusy(true); setFeedback("");
     try {
       const result = await lovable.auth.signInWithOAuth(provider, { redirect_uri: `${window.location.origin}/auth` });
@@ -66,7 +65,6 @@ function AuthPage() {
       <div className="my-5 border-t" />
       <div className="space-y-3">
         <Button variant="outline" disabled={busy} className="w-full" onClick={() => social("google")}><GoogleMark />Continue with Google</Button>
-        <Button variant="outline" disabled={busy} className="w-full" onClick={() => social("lovable")}><LovableMark />Continue with Lovable</Button>
         <Button asChild variant="link" className="w-full"><Link to="/admin">Open admin inbox</Link></Button>
       </div>
     </div>

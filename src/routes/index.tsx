@@ -121,7 +121,7 @@ function Home() {
       {/* ABOUT */}
       <section id="about" className="mx-auto grid max-w-7xl scroll-mt-24 items-center gap-10 px-4 py-16 md:px-8 lg:grid-cols-2">
         <Reveal variant="left" className="relative">
-          <img src={aboutBanner.url} alt="Our fleet on a scenic highway — Your Journey, Our Priority" className="h-72 w-full rounded-2xl object-cover shadow-card" loading="lazy" />
+          <img src={aboutBanner.url} alt="Our fleet on a scenic highway — Your Journey, Our Priority" className="w-full rounded-2xl shadow-card" loading="lazy" />
           <div className="absolute -bottom-6 right-4 flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-star bg-gradient-to-b from-brand-deep to-foreground text-center font-display text-primary-foreground shadow-card">
             <span className="text-4xl font-black text-star">5+</span><span className="text-lg font-bold text-star">Years</span>
             <span className="rounded bg-accent px-2 text-[10px] font-bold italic">Experience</span>
@@ -143,6 +143,29 @@ function Home() {
           </div>
           <Link to="/cars" className="mt-6 inline-flex items-center gap-2 rounded-full bg-grad-red px-6 py-3 text-sm font-semibold text-accent-foreground shadow-card">Discover Our Story <ArrowRight className="h-4 w-4" /></Link>
         </Reveal>
+      </section>
+
+      {/* OUR HISTORY */}
+      <section className="bg-brand-soft py-14">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <SectionTitle a="Our" b="History" sub="The journey of Madhumitha Car Travels, mile by mile." />
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { y: "2020", t: "The Beginning", d: "Started with a single car and a simple promise — safe, comfortable travel for every customer." },
+              { y: "2022", t: "Growing Fleet", d: "Expanded to sedans and SUVs, serving families, businesses and airport travellers across Vijayawada." },
+              { y: "2024", t: "Trusted by Many", d: "Crossed thousands of happy trips with 24/7 support and flexible hourly rental packages." },
+              { y: "Today", t: "Your Travel Partner", d: "A well-maintained fleet, professional drivers and affordable pricing — ready for your next journey." },
+            ].map((h, i) => (
+              <Reveal key={h.y} delay={i * 120}>
+                <div className="relative h-full rounded-2xl bg-card p-6 pt-8 shadow-card transition-transform hover:-translate-y-2">
+                  <span className="absolute -top-4 left-6 rounded-full bg-grad-red px-4 py-1.5 font-display text-sm font-black italic text-accent-foreground shadow-card">{h.y}</span>
+                  <h3 className="font-semibold text-primary">{h.t}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{h.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* SERVICES */}
