@@ -33,8 +33,8 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-8 lg:flex">
           {NAV.map((n) => (
-            <Link key={n.label} to={n.to} {...("hash" in n ? { hash: n.hash } : {})}
-              activeOptions={{ exact: true, includeHash: "hash" in n }}
+            <Link key={n.label} to={n.to}
+              activeOptions={{ exact: true }}
               className="relative py-2 text-sm font-semibold text-foreground transition-colors hover:text-accent data-[status=active]:text-accent">
               {n.label}
               <span className="nav-underline" />
@@ -52,7 +52,7 @@ export function SiteHeader() {
       {open && (
         <div className="border-t bg-background px-4 pb-4 lg:hidden">
           {NAV.map((n) => (
-            <Link key={n.label} to={n.to} {...("hash" in n ? { hash: n.hash } : {})} onClick={() => setOpen(false)} className="block py-3 font-semibold">{n.label}</Link>
+            <Link key={n.label} to={n.to} onClick={() => setOpen(false)} className="block py-3 font-semibold">{n.label}</Link>
           ))}
           <a href={PHONE_LINK} className="block py-3 font-bold text-accent">{PHONE}</a>
         </div>

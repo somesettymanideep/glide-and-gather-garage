@@ -57,7 +57,7 @@ export function SiteFooter() {
   );
 }
 
-function FooterList({ title, items }: { title: string; items: [string, "/" | "/cars" | "/contact"][] }) {
+function FooterList({ title, items }: { title: string; items: [string, "/" | "/about" | "/cars" | "/contact"][] }) {
   return (
     <div>
       <h4 className="mb-4 text-lg font-semibold">{title}</h4>
