@@ -7,8 +7,8 @@ import { WhatsappIcon } from "./BrandIcons";
 export function CarCard({ car }: { car: Car }) {
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-card text-center shadow-card transition-transform hover:-translate-y-2">
-      <div className="relative h-44 w-full overflow-hidden bg-muted">
-        <img src={car.img} alt={car.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+      <div className="relative h-48 w-full overflow-hidden bg-muted px-4 py-4">
+        <img src={car.img} alt={car.name} loading="lazy" className="h-full w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105" />
         <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-grad-green px-3 py-1 text-xs font-bold text-primary-foreground shadow-card"><BadgeCheck className="h-3.5 w-3.5" />Available</span>
       </div>
       <div className="flex flex-1 flex-col p-5">
