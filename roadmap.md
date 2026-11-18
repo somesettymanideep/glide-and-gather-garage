@@ -1,6 +1,7 @@
 - [x] Remove the Ready to Ride section from Our Cars.
-- [ ] Save home booking requests and contact enquiries in Lovable Cloud.
-- [ ] Add a protected admin enquiry inbox and authorize the owner's account.
+- [x] Save home booking requests and contact enquiries in Lovable Cloud.
+- [x] Add a protected admin enquiry inbox with owner-only authorization.
+- [ ] Verify the owner's signed-in inbox — awaiting account creation and sign-in; no auth users currently exist.
 - [x] Apply the Our Cars card layout to the home-page fleet using one shared card.
 - [x] Keep the car image area plain and check desktop/mobile layouts.
 - [x] Add individual car detail pages with all currently known specifications and daily rates.
