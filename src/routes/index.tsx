@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Headphones, Handshake, IndianRupee, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Gauge } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.png.asset.json";
+import aboutBanner from "@/assets/about-banner.png.asset.json";
 import testiRoad from "@/assets/testi-road.jpg";
 import avatarRamesh from "@/assets/avatar-ramesh.jpg";
 import avatarPriya from "@/assets/avatar-priya.jpg";
@@ -107,7 +108,7 @@ function Home() {
       {/* ABOUT */}
       <section id="about" className="mx-auto grid max-w-7xl scroll-mt-24 items-center gap-10 px-4 py-16 md:px-8 lg:grid-cols-[1.1fr_1.2fr_0.7fr]">
         <Reveal variant="left" className="relative">
-          <img src={hero.url} alt="Our sedan on the road" className="h-72 w-full rounded-2xl object-cover shadow-card" loading="lazy" />
+          <img src={aboutBanner.url} alt="Our fleet on a scenic highway — Your Journey, Our Priority" className="h-72 w-full rounded-2xl object-cover shadow-card" loading="lazy" />
           <div className="absolute -bottom-6 right-4 flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-star bg-gradient-to-b from-brand-deep to-foreground text-center font-display text-primary-foreground shadow-card">
             <span className="text-4xl font-black text-star">5+</span><span className="text-lg font-bold text-star">Years</span>
             <span className="rounded bg-accent px-2 text-[10px] font-bold italic">Experience</span>
