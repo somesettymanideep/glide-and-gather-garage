@@ -32,7 +32,7 @@ export function SiteFooter() {
           <p className="font-display text-sm italic">Travel with Comfort... Reach with Happiness...</p>
           <Socials />
         </div>
-        <FooterList title="Quick Links" items={[["Home", "/"], ["About Us", "/"], ["Our Services", "/"], ["Our Cars", "/cars"], ["Contact Us", "/contact"]]} />
+        <FooterList title="Quick Links" items={[["Home", "/"], ["About Us", "/about"], ["Our Services", "/"], ["Our Cars", "/cars"], ["Contact Us", "/contact"]]} />
         <FooterList title="Our Services" items={[["Self-Drive Cars", "/cars"], ["Car Rental Services", "/cars"], ["Airport Pickup & Drop", "/contact"], ["Hourly Rentals", "/cars"]]} />
         <div>
           <h4 className="mb-4 text-lg font-semibold">Contact Information</h4>

@@ -145,29 +145,6 @@ function Home() {
         </Reveal>
       </section>
 
-      {/* OUR HISTORY */}
-      <section className="bg-brand-soft py-14">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <SectionTitle a="Our" b="History" sub="The journey of Madhumitha Car Travels, mile by mile." />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { y: "2020", t: "The Beginning", d: "Started with a single car and a simple promise — safe, comfortable travel for every customer." },
-              { y: "2022", t: "Growing Fleet", d: "Expanded to sedans and SUVs, serving families, businesses and airport travellers across Vijayawada." },
-              { y: "2024", t: "Trusted by Many", d: "Crossed thousands of happy trips with 24/7 support and flexible hourly rental packages." },
-              { y: "Today", t: "Your Travel Partner", d: "A well-maintained fleet, professional drivers and affordable pricing — ready for your next journey." },
-            ].map((h, i) => (
-              <Reveal key={h.y} delay={i * 120}>
-                <div className="relative h-full rounded-2xl bg-card p-6 pt-8 shadow-card transition-transform hover:-translate-y-2">
-                  <span className="absolute -top-4 left-6 rounded-full bg-grad-red px-4 py-1.5 font-display text-sm font-black italic text-accent-foreground shadow-card">{h.y}</span>
-                  <h3 className="font-semibold text-primary">{h.t}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{h.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* SERVICES */}
       <section className="mx-auto max-w-7xl px-4 py-10 md:px-8">
         <SectionTitle a="Travel Solutions" b="Designed Around You" sub="Flexible car travel services for every destination and occasion." />
