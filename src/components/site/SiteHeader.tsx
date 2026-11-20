@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Menu, PhoneCall, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/logo.png";
 import { PHONE, PHONE_LINK } from "./data";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +25,7 @@ export function SiteHeader() {
       scrolled ? "bg-background/95 shadow-card backdrop-blur" : "bg-transparent")}>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 md:px-8">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo.url} alt="Madhumitha Car Travels logo" className={cn("rounded-full transition-all", scrolled ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20")} />
+          <img src={logo} alt="Madhumitha Car Travels logo" className={cn("rounded-full transition-all", scrolled ? "h-12 w-12" : "h-16 w-16 md:h-20 md:w-20")} />
           <span className="font-display text-xl font-black italic leading-none md:text-2xl">
             <span className="block text-primary">Madhumitha</span>
             <span className="block text-accent">Car Travels</span>

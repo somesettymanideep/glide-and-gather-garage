@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUp, ChevronRight, Mail, MapPin, Phone } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/logo.png";
 import { FacebookIcon, InstagramIcon, WhatsappIcon, YoutubeIcon } from "./BrandIcons";
 import { ADDRESS, EMAIL, PHONE, PHONE_LINK } from "./data";
 
@@ -26,7 +26,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-2 md:px-8 lg:grid-cols-[1.3fr_0.8fr_1fr_1.5fr]">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="Madhumitha Car Travels" className="h-24 w-24 rounded-full" loading="lazy" />
+            <img src={logo} alt="Madhumitha Car Travels" className="h-24 w-24 rounded-full" loading="lazy" />
             <span className="font-display text-2xl font-black italic leading-none"><span className="block">Madhumitha</span><span className="block text-accent [text-shadow:0_1px_0_white]">Car Travels</span></span>
           </div>
           <p className="font-display text-sm italic">Travel with Comfort... Reach with Happiness...</p>

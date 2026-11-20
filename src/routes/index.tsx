@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Headphones, Handshake, IndianRupee, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Gauge } from "lucide-react";
 import { useState } from "react";
-import hero from "@/assets/hero.png.asset.json";
-import aboutBanner from "@/assets/about-banner.png.asset.json";
+import hero from "@/assets/hero.png";
+import aboutBanner from "@/assets/about-banner.png";
 import testiRoad from "@/assets/testi-road.jpg";
 import avatarRamesh from "@/assets/avatar-ramesh.jpg";
 import avatarPriya from "@/assets/avatar-priya.jpg";
@@ -16,6 +16,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal } from "@/components/site/Reveal";
 import { CARS } from "@/components/site/data";
 import { CarCard } from "@/components/site/CarCard";
+import { FleetShowcase } from "@/components/site/FleetShowcase";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -81,7 +82,7 @@ function Home() {
 
       {/* HERO */}
       <section className="relative min-h-[440px] pt-24 md:min-h-[500px]">
-        <img src={hero.url} alt="Car on a riverside road near a temple and bridge" className="absolute inset-0 h-full w-full object-cover object-right" />
+        <img src={hero} alt="Car on a riverside road near a temple and bridge" className="absolute inset-0 h-full w-full object-cover object-right" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent md:via-background/50" />
         <div className="relative mx-auto max-w-7xl px-4 pt-8 md:px-8 md:pt-12">
           <h1 className="hero-in font-display text-3xl font-black italic leading-[1.05] md:text-5xl">
@@ -121,7 +122,7 @@ function Home() {
       {/* ABOUT */}
       <section id="about" className="mx-auto grid max-w-7xl scroll-mt-24 items-center gap-10 px-4 py-16 md:px-8 lg:grid-cols-2">
         <Reveal variant="left" className="relative">
-          <img src={aboutBanner.url} alt="Our fleet on a scenic highway — Your Journey, Our Priority" className="w-full rounded-2xl shadow-card" loading="lazy" />
+          <img src={aboutBanner} alt="Our fleet on a scenic highway — Your Journey, Our Priority" className="w-full rounded-2xl shadow-card" loading="lazy" />
           <div className="absolute -bottom-6 right-4 flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-star bg-gradient-to-b from-brand-deep to-foreground text-center font-display text-primary-foreground shadow-card">
             <span className="text-4xl font-black text-star">5+</span><span className="text-lg font-bold text-star">Years</span>
             <span className="rounded bg-accent px-2 text-[10px] font-bold italic">Experience</span>
@@ -175,6 +176,13 @@ function Home() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      {/* FLEET SHOWCASE */}
+      <section className="mx-auto max-w-7xl px-4 py-10 md:px-8">
+        <Reveal>
+          <FleetShowcase />
+        </Reveal>
       </section>
 
       {/* WHY CHOOSE US */}

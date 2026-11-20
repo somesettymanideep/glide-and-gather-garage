@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Armchair, ArrowRight, Car, Handshake, Headphones, ShieldCheck } from "lucide-react";
-import aboutBanner from "@/assets/about-banner.png.asset.json";
+import aboutBanner from "@/assets/about-banner.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PageHero } from "@/components/site/PageHero";
@@ -36,7 +36,7 @@ function AboutPage() {
       {/* ABOUT */}
       <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:px-8 lg:grid-cols-2">
         <Reveal variant="left" className="relative">
-          <img src={aboutBanner.url} alt="Our fleet on a scenic highway — Your Journey, Our Priority" className="w-full rounded-2xl shadow-card" loading="lazy" />
+          <img src={aboutBanner} alt="Our fleet on a scenic highway — Your Journey, Our Priority" className="w-full rounded-2xl shadow-card" loading="lazy" />
           <div className="absolute -bottom-6 right-4 flex h-32 w-32 flex-col items-center justify-center rounded-full border-4 border-star bg-gradient-to-b from-brand-deep to-foreground text-center font-display text-primary-foreground shadow-card">
             <span className="text-4xl font-black text-star">5+</span><span className="text-lg font-bold text-star">Years</span>
             <span className="rounded bg-accent px-2 text-[10px] font-bold italic">Experience</span>

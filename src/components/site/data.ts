@@ -1,12 +1,11 @@
-import swift from "@/assets/fleet-swift.jpg";
-import i20 from "@/assets/fleet-i20.jpg";
-import baleno from "@/assets/fleet-baleno.jpg";
-import creta from "@/assets/fleet-creta.jpg";
-import seltos from "@/assets/fleet-seltos.jpg";
 import innova from "@/assets/fleet-innova-crysta.jpg";
-import ertiga from "@/assets/fleet-ertiga.jpg";
-import fortuner from "@/assets/fleet-fortuner.jpg";
-import eclass from "@/assets/fleet-e-class.jpg";
+import innovaFront from "@/assets/fleet-innova-crysta-front.jpg";
+import carens from "@/assets/fleet-carens.jpg";
+import carensFront from "@/assets/fleet-carens-front.jpg";
+import ebella from "@/assets/fleet-urban-cruiser-ebella.jpg";
+import ebellaFront from "@/assets/fleet-urban-cruiser-ebella-front.jpg";
+import dzire from "@/assets/fleet-swift-dzire.jpg";
+import dzireFront from "@/assets/fleet-swift-dzire-front.jpg";
 
 export const PHONE = "+91 7981872730";
 export const PHONE_LINK = "tel:+917981872730";
@@ -19,18 +18,25 @@ export const ADDRESS = [
 ];
 
 export type Category = "Sedan" | "SUV" | "Hatchback" | "Luxury";
-export type Car = { code: string; name: string; type: string; category: Category; seats: number; fuel: string; transmission: string; price: number; img: string };
+export type Car = {
+  code: string;
+  name: string;
+  type: string;
+  category: Category;
+  seats: number;
+  fuel: string;
+  transmission: string;
+  price: number;
+  img: string;
+  gallery?: string[];
+  isRealFleet?: boolean;
+};
 
 export const CARS: Car[] = [
-  { code: "MC100", name: "Maruti Suzuki Swift", type: "Hatchback", category: "Hatchback", seats: 5, fuel: "Petrol", transmission: "Manual", price: 1500, img: swift },
-  { code: "MC101", name: "Hyundai i20", type: "Hatchback", category: "Hatchback", seats: 5, fuel: "Petrol", transmission: "Manual", price: 1800, img: i20 },
-  { code: "MC102", name: "Maruti Baleno", type: "Hatchback", category: "Hatchback", seats: 5, fuel: "Petrol", transmission: "Automatic", price: 2000, img: baleno },
-  { code: "MC103", name: "Hyundai Creta", type: "SUV", category: "SUV", seats: 5, fuel: "Diesel", transmission: "Manual", price: 2500, img: creta },
-  { code: "MC104", name: "Kia Seltos", type: "SUV", category: "SUV", seats: 5, fuel: "Petrol", transmission: "Automatic", price: 2800, img: seltos },
-  { code: "MC105", name: "Toyota Innova Crysta", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3500, img: innova },
-  { code: "MC106", name: "Maruti Ertiga", type: "SUV", category: "SUV", seats: 7, fuel: "Petrol", transmission: "Manual", price: 2500, img: ertiga },
-  { code: "MC107", name: "Toyota Fortuner", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Automatic", price: 5500, img: fortuner },
-  { code: "MC108", name: "Mercedes-Benz E-Class", type: "Luxury Car", category: "Luxury", seats: 5, fuel: "Diesel", transmission: "Automatic", price: 8000, img: eclass },
+  { code: "MC105", name: "Toyota Innova Crysta", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3500, img: innova, gallery: [innova, innovaFront], isRealFleet: true },
+  { code: "MC109", name: "Kia Carens", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3000, img: carens, gallery: [carens, carensFront], isRealFleet: true },
+  { code: "MC110", name: "Toyota Urban Cruiser Ebella EV", type: "Electric SUV", category: "SUV", seats: 5, fuel: "Electric (EV)", transmission: "Automatic", price: 2800, img: ebella, gallery: [ebella, ebellaFront], isRealFleet: true },
+  { code: "MC111", name: "Maruti Suzuki Swift Dzire", type: "Sedan", category: "Sedan", seats: 5, fuel: "Petrol", transmission: "Manual", price: 2000, img: dzire, gallery: [dzire, dzireFront], isRealFleet: true },
 ];
 
 export function getCar(code: string) {

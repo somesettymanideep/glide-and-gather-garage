@@ -56,13 +56,23 @@ function CarsPage() {
           </label>
         </Reveal>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((c, i) => (
-            <Reveal key={c.code} delay={(i % 3) * 120}>
-              <CarCard car={c} />
-            </Reveal>
-          ))}
-        </div>
+        {list.length > 0 ? (
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {list.map((c, i) => (
+              <Reveal key={c.code} delay={(i % 3) * 120}>
+                <CarCard car={c} />
+              </Reveal>
+            ))}
+          </div>
+        ) : (
+          <div className="my-12 rounded-2xl bg-card p-10 text-center shadow-card">
+            <p className="text-lg font-semibold text-primary">No vehicles found in this category currently.</p>
+            <p className="mt-2 text-sm text-muted-foreground">We are actively expanding our real fleet. View all available cars or contact us directly on WhatsApp.</p>
+            <button onClick={() => setTab("All")} className="mt-5 rounded-full bg-grad-red px-6 py-2.5 text-sm font-semibold text-accent-foreground shadow-card">
+              View All Cars
+            </button>
+          </div>
+        )}
 
         <Reveal className="my-10 grid grid-cols-2 gap-6 rounded-2xl bg-brand-soft p-5 md:grid-cols-4 md:divide-x md:divide-border">
           {[[ShieldCheck, "Well-Maintained", "Vehicles"], [Headphones, "24/7", "Support"], [UserCheck, "Professional", "Drivers"], [IndianRupee, "Affordable", "Pricing"]].map(([I, a, b]) => {
