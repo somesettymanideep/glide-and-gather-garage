@@ -37,8 +37,8 @@ describe("Car-specific booking", () => {
     expect(url.searchParams.get("text")).toContain(`${car.name} (${car.code})`);
   });
   it("uses a different image for each car in the fleet", () => {
-    expect(CARS).toHaveLength(4);
-    expect(new Set(CARS.map((car) => car.img)).size).toBe(4);
+    expect(CARS).toHaveLength(5);
+    expect(new Set(CARS.map((car) => car.img)).size).toBe(5);
   });
   it("only contains real verified cars in the fleet", () => {
     expect(CARS.every((c) => c.isRealFleet)).toBe(true);
@@ -47,6 +47,7 @@ describe("Car-specific booking", () => {
       "Kia Carens",
       "Toyota Urban Cruiser Ebella EV",
       "Maruti Suzuki Swift Dzire",
+      "Force Urbania",
     ]);
   });
   it("returns only the requested car and rejects unknown codes", () => {
@@ -54,6 +55,7 @@ describe("Car-specific booking", () => {
     expect(getCar("MC109")?.name).toBe("Kia Carens");
     expect(getCar("MC110")?.name).toBe("Toyota Urban Cruiser Ebella EV");
     expect(getCar("MC111")?.name).toBe("Maruti Suzuki Swift Dzire");
+    expect(getCar("MC112")?.name).toBe("Force Urbania");
     expect(getCar("MC100")).toBeUndefined();
     expect(getCar("missing")).toBeUndefined();
   });
