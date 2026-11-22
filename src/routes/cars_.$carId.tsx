@@ -1,12 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, Car, ChevronRight, Fuel, Settings, Snowflake, Users, Zap } from "lucide-react";
+import { ArrowLeft, Car, ChevronRight, Fuel, Phone, Settings, Snowflake, Users, Zap } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal } from "@/components/site/Reveal";
 import { WhatsappIcon } from "@/components/site/BrandIcons";
-import { carBookingUrl, getCar } from "@/components/site/data";
+import { carBookingUrl, getCar, PHONE_LINK, type RentalHours } from "@/components/site/data";
 import { Button } from "@/components/ui/button";
+import { RentalPrice } from "@/components/site/RentalPrice";
 
 export const Route = createFileRoute("/cars_/$carId")({
   beforeLoad: ({ params }) => {
@@ -35,8 +36,10 @@ function CarUnavailable({ retry }: { retry?: () => void }) {
 function CarDetails() {
   const { carId } = Route.useParams();
   const car = getCar(carId);
+  const [hours, setHours] = useState<RentalHours>(4);
+  const [imageIndex, setImageIndex] = useState(0);
   if (!car) return <CarUnavailable />;
-  const [activeImg, setActiveImg] = useState(car.img);
+  const activeImg = car.gallery?.[imageIndex] ?? car.img;
   const specs = [
     { label: "Vehicle type", value: car.type, Icon: Car },
     { label: "Seating capacity", value: `${car.seats} seats`, Icon: Users },
@@ -52,8 +55,8 @@ function CarDetails() {
         <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm font-medium"><Link to="/">Home</Link><ChevronRight className="h-4 w-4 text-accent" /><Link to="/cars">Our Cars</Link><ChevronRight className="h-4 w-4 text-accent" /><span className="text-primary">{car.name}</span></nav>
         <div className="grid items-start gap-8 lg:grid-cols-[1.25fr_1fr] lg:gap-12">
           <Reveal>
-            <div className="relative overflow-hidden rounded-lg bg-muted">
-              <img src={activeImg} alt={car.name} width={1536} height={512} className="aspect-[3/1] w-full object-contain" />
+            <div className="relative overflow-hidden rounded-lg">
+              <img src={activeImg} alt={car.name} className="block h-auto w-full" />
               {car.isRealFleet && (
                 <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground shadow-card">
                   Actual Vehicle Photo
@@ -63,16 +66,19 @@ function CarDetails() {
             {car.gallery && car.gallery.length > 1 && (
               <div className="mt-3 flex gap-2">
                 {car.gallery.map((g, idx) => (
-                  <button
+                  <Button
                     key={idx}
                     type="button"
-                    onClick={() => setActiveImg(g)}
-                    className={`h-16 w-24 overflow-hidden rounded-md border-2 transition-all ${
+                     variant="outline"
+                     aria-label={`${car.name} view ${idx + 1}`}
+                     aria-pressed={activeImg === g}
+                     onClick={() => setImageIndex(idx)}
+                     className={`h-16 w-24 overflow-hidden rounded-md border-2 p-0 transition-all ${
                       activeImg === g ? "border-accent ring-2 ring-accent/30" : "border-border opacity-70 hover:opacity-100"
                     }`}
                   >
-                    <img src={g} alt={`${car.name} view ${idx + 1}`} className="h-full w-full object-cover" />
-                  </button>
+                    <img src={g} alt={`${car.name} view ${idx + 1}`} className="h-full w-full object-contain" />
+                  </Button>
                 ))}
               </div>
             )}
@@ -88,8 +94,9 @@ function CarDetails() {
             <p className="text-sm font-semibold text-accent">{car.code} · {car.type}</p>
             <h1 className="mt-3 font-display text-3xl font-black italic text-primary md:text-4xl">{car.name}</h1>
             <p className="mt-4 text-muted-foreground">{car.seats}-seater {car.type.toLowerCase()} with {car.transmission.toLowerCase()} transmission, {car.fuel.toLowerCase()} fuel and air conditioning.</p>
-            <div className="my-7 border-y py-6"><p className="text-sm font-semibold">Daily rate</p><p className="mt-2 font-display text-3xl font-black text-primary">₹{car.price.toLocaleString("en-IN")} <span className="text-base font-medium text-foreground">/ day</span></p><p className="mt-2 text-sm text-muted-foreground">Indicative rate from the reference. Final price and availability confirmed on WhatsApp.</p></div>
-            <Button asChild size="lg" className="h-auto w-full whitespace-normal bg-grad-green py-4 text-base font-bold"><a href={carBookingUrl(car)} target="_blank" rel="noopener noreferrer"><WhatsappIcon />Book on WhatsApp</a></Button>
+            <div className="my-7 border-y py-4"><RentalPrice car={car} hours={hours} onChange={setHours} /></div>
+            <Button asChild size="lg" className="h-auto w-full whitespace-normal bg-grad-green py-4 text-base font-bold"><a href={carBookingUrl(car, hours)} target="_blank" rel="noopener noreferrer"><WhatsappIcon />Book on WhatsApp</a></Button>
+            <Button asChild size="lg" variant="outline" className="mt-3 h-auto w-full gap-2 border-primary py-4 text-base font-bold text-primary"><a href={PHONE_LINK}><Phone />Call Now</a></Button>
             <Button asChild variant="link" className="mt-4 px-0"><Link to="/cars"><ArrowLeft />Back to Our Cars</Link></Button>
           </Reveal>
         </div>

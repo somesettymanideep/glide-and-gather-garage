@@ -9,3 +9,5 @@
 - [x] Create distinct model illustrations on plain backgrounds for cards and detail pages.
 - [ ] Replace example rates with actual rates — awaiting the owner's rate list.
 - [ ] Replace repeated stand-ins with distinct real fleet photos on plain backgrounds — awaiting one original photo per car.
+- [x] Add hourly price dropdowns with confirmed Swift Dzire rates across car displays; other hourly prices await the owner's rates.
+- [x] Show complete detail-page photos without offsets and add a direct call button.

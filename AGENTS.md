@@ -30,5 +30,6 @@ use the editor.
 <!-- LOVABLE:END -->
 - Shared site chrome (header, footer, CTA band, page hero, Reveal) lives in src/components/site; pages compose them so all routes stay visually consistent.
 - Home and fleet pages use the shared CarCard and fleet data so specifications, imagery, rates, and booking actions stay consistent.
+- Hourly rental options use shared fleet rates and RentalPrice; missing rates stay enquiry-only and selected packages carry into WhatsApp bookings.
 - Car detail URLs use the un-nested cars_.$carId route keyed by fleet code; shared booking URL generation pre-fills the selected vehicle in WhatsApp without sending a message automatically.
 - Public enquiry forms share validated server-side storage; the protected admin inbox uses authenticated role checks and RLS so customer details never become public.

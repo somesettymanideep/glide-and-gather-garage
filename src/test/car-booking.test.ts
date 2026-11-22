@@ -1,7 +1,22 @@
 import { describe, expect, it } from "vitest";
-import { CARS, carBookingUrl, getCar } from "@/components/site/data";
+import { CARS, carBookingUrl, getCar, getRentalRate, PHONE_LINK } from "@/components/site/data";
 
 describe("Car-specific booking", () => {
+  it.each([[4, 2500], [8, 3500], [12, 3500]] as const)("charges Swift Dzire %i hours at ₹%i", (hours, price) => {
+    const car = getCar("MC111");
+    if (!car) throw new Error("Swift Dzire missing");
+    expect(getRentalRate(car, hours)).toBe(price);
+    const text = new URL(carBookingUrl(car, hours)).searchParams.get("text");
+    expect(text).toContain(`for ${hours} hours at ₹${price.toLocaleString("en-IN")}`);
+  });
+  it("does not invent hourly prices for other vehicles", () => {
+    const car = getCar("MC105");
+    if (!car) throw new Error("Innova missing");
+    expect(getRentalRate(car, 4)).toBeUndefined();
+  });
+  it("calls the company's existing phone number", () => {
+    expect(PHONE_LINK).toBe("tel:+917981872730");
+  });
   it.each(CARS)("includes the selected $code car in its WhatsApp enquiry", (car) => {
     const url = new URL(carBookingUrl(car));
     expect(url.origin).toBe("https://wa.me");

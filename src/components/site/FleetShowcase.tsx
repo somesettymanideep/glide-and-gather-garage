@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, BadgeCheck, Fuel, Settings, Snowflake, Users, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CARS, carBookingUrl, type Category } from "./data";
+import { CARS, carBookingUrl, type Category, type RentalHours } from "./data";
 import { WhatsappIcon } from "./BrandIcons";
+import { RentalPrice } from "./RentalPrice";
 
 const BLURB: Record<Category, string> = {
   Hatchback: "Compact, fuel-efficient and easy to drive — ideal for city trips, solo travellers and small families.",
@@ -14,6 +15,7 @@ const BLURB: Record<Category, string> = {
 
 export function FleetShowcase() {
   const [active, setActive] = useState(0);
+  const [hours, setHours] = useState<RentalHours>(4);
   const car = CARS[active] ?? CARS[0];
 
   if (!car) return null;
@@ -69,14 +71,11 @@ export function FleetShowcase() {
             <span className="flex items-center gap-2"><Snowflake className="h-4 w-4 text-primary" />AC</span>
           </div>
 
-          <p className="text-sm text-muted-foreground">Daily rental rate</p>
-          <p className="mt-1 font-display text-4xl font-black text-accent md:text-5xl">
-            ₹{car.price.toLocaleString("en-IN")} <span className="text-base font-semibold text-foreground">/ day</span>
-          </p>
+          <RentalPrice car={car} hours={hours} onChange={setHours} />
 
           <div className="mt-5 flex flex-wrap items-center gap-4">
             <Button asChild className="h-12 gap-2 bg-grad-green px-6 font-bold shadow-card">
-              <a href={carBookingUrl(car)} target="_blank" rel="noopener noreferrer"><WhatsappIcon />Book This Vehicle<ArrowRight className="h-4 w-4" /></a>
+              <a href={carBookingUrl(car, hours)} target="_blank" rel="noopener noreferrer"><WhatsappIcon />Book This Vehicle<ArrowRight className="h-4 w-4" /></a>
             </Button>
             <Link to="/cars/$carId" params={{ carId: car.code }} className="inline-flex items-center gap-1.5 border-b-2 border-accent pb-0.5 text-sm font-bold text-primary transition-colors hover:text-accent">
               View Details <ArrowUpRight className="h-4 w-4" />

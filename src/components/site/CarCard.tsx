@@ -1,10 +1,13 @@
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { BadgeCheck, Eye, Fuel, Settings, Snowflake, User, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { carBookingUrl, type Car } from "./data";
+import { carBookingUrl, type Car, type RentalHours } from "./data";
 import { WhatsappIcon } from "./BrandIcons";
+import { RentalPrice } from "./RentalPrice";
 
 export function CarCard({ car }: { car: Car }) {
+  const [hours, setHours] = useState<RentalHours>(4);
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-card text-center shadow-card transition-transform hover:-translate-y-2">
       <div className="relative h-48 w-full overflow-hidden bg-car-photo">
@@ -24,10 +27,10 @@ export function CarCard({ car }: { car: Car }) {
         <p className="flex items-center gap-2"><Settings className="h-4 w-4 shrink-0" />{car.transmission}</p>
         <p className="flex items-center gap-2"><Snowflake className="h-4 w-4 shrink-0" />AC</p>
       </div>
-      <p className="mt-4 rounded-xl bg-brand-soft py-2.5 font-display text-2xl font-black text-primary">₹{car.price.toLocaleString("en-IN")} <span className="text-sm font-semibold text-foreground">/ day</span></p>
+      <RentalPrice car={car} hours={hours} onChange={setHours} />
       <div className="mt-3 grid grid-cols-2 gap-3">
         <Button asChild variant="outline" className="h-11 gap-1.5 border-2 border-primary px-2 font-bold text-primary hover:bg-brand-soft hover:text-primary"><Link to="/cars/$carId" params={{ carId: car.code }}><Eye />View Details</Link></Button>
-        <Button asChild className="h-11 gap-1.5 bg-grad-green px-2 font-bold shadow-card"><a href={carBookingUrl(car)} target="_blank" rel="noopener noreferrer"><WhatsappIcon />Book Now</a></Button>
+        <Button asChild className="h-11 gap-1.5 bg-grad-green px-2 font-bold shadow-card"><a href={carBookingUrl(car, hours)} target="_blank" rel="noopener noreferrer"><WhatsappIcon />Book Now</a></Button>
       </div>
       </div>
     </article>

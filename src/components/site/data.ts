@@ -18,6 +18,8 @@ export const ADDRESS = [
 ];
 
 export type Category = "Sedan" | "SUV" | "Hatchback" | "Luxury";
+export const RENTAL_HOURS = [4, 8, 12] as const;
+export type RentalHours = (typeof RENTAL_HOURS)[number];
 export type Car = {
   code: string;
   name: string;
@@ -27,6 +29,7 @@ export type Car = {
   fuel: string;
   transmission: string;
   price: number;
+  hourlyRates?: Partial<Record<RentalHours, number>>;
   img: string;
   gallery?: string[];
   isRealFleet?: boolean;
@@ -36,15 +39,21 @@ export const CARS: Car[] = [
   { code: "MC105", name: "Toyota Innova Crysta", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3500, img: innova, gallery: [innova, innovaFront], isRealFleet: true },
   { code: "MC109", name: "Kia Carens", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3000, img: carens, gallery: [carens, carensFront], isRealFleet: true },
   { code: "MC110", name: "Toyota Urban Cruiser Ebella EV", type: "Electric SUV", category: "SUV", seats: 5, fuel: "Electric (EV)", transmission: "Automatic", price: 2800, img: ebella, gallery: [ebella, ebellaFront], isRealFleet: true },
-  { code: "MC111", name: "Maruti Suzuki Swift Dzire", type: "Sedan", category: "Sedan", seats: 5, fuel: "Petrol", transmission: "Manual", price: 2000, img: dzire, gallery: [dzire, dzireFront], isRealFleet: true },
+  { code: "MC111", name: "Maruti Suzuki Swift Dzire", type: "Sedan", category: "Sedan", seats: 5, fuel: "Petrol", transmission: "Manual", price: 2000, hourlyRates: { 4: 2500, 8: 3500, 12: 3500 }, img: dzire, gallery: [dzire, dzireFront], isRealFleet: true },
 ];
 
 export function getCar(code: string) {
   return CARS.find((car) => car.code === code);
 }
 
-export function carBookingUrl(car: Car) {
+export function getRentalRate(car: Car, hours: RentalHours) {
+  return car.hourlyRates?.[hours];
+}
+
+export function carBookingUrl(car: Car, hours?: RentalHours) {
   const number = PHONE.replace(/\D/g, "");
-  const message = `Hello Madhumitha Car Travels, I would like to book the ${car.name} (${car.code}). Please confirm availability and the final daily rate. My travel date: `;
+  const rate = hours ? getRentalRate(car, hours) : undefined;
+  const packageText = hours ? ` for ${hours} hours${rate === undefined ? "" : ` at ₹${rate.toLocaleString("en-IN")}`}` : "";
+  const message = `Hello Madhumitha Car Travels, I would like to book the ${car.name} (${car.code})${packageText}. Please confirm availability and the final rate. My travel date: `;
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
