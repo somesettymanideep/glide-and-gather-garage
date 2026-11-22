@@ -9,10 +9,17 @@ describe("Car-specific booking", () => {
     const text = new URL(carBookingUrl(car, hours)).searchParams.get("text");
     expect(text).toContain(`for ${hours} hours at ₹${price.toLocaleString("en-IN")}`);
   });
-  it("does not invent hourly prices for other vehicles", () => {
+  it.each([[4, 2000], [8, 3000], [12, 3500]] as const)("charges Kia Carens %i hours at ₹%i", (hours, price) => {
     const car = getCar("MC109");
     if (!car) throw new Error("Carens missing");
-    expect(getRentalRate(car, 4)).toBeUndefined();
+    expect(getRentalRate(car, hours)).toBe(price);
+    expect(new URL(carBookingUrl(car, hours)).searchParams.get("text")).toContain(`for ${hours} hours at ₹${price.toLocaleString("en-IN")}`);
+  });
+  it.each([[4, 2000], [8, 3000], [12, 3000]] as const)("charges Urban Cruiser Ebella EV %i hours at ₹%i", (hours, price) => {
+    const car = getCar("MC110");
+    if (!car) throw new Error("Ebella missing");
+    expect(getRentalRate(car, hours)).toBe(price);
+    expect(new URL(carBookingUrl(car, hours)).searchParams.get("text")).toContain(`for ${hours} hours at ₹${price.toLocaleString("en-IN")}`);
   });
   it.each([[4, 2500], [8, 3500], [12, 3500]] as const)("charges Innova Crysta %i hours at ₹%i", (hours, price) => {
     const car = getCar("MC105");
