@@ -68,7 +68,7 @@ function ContactPage() {
             <F label="Drop Location" icon={<MapPin className="h-4 w-4" />}><input name="destination" maxLength={250} placeholder="Enter drop location" className="inp" /></F>
             <F label="Pickup Date" icon={<Calendar className="h-4 w-4" />}><input name="pickup_date" type="date" className="inp" /></F>
             <F label="Pickup Time" icon={<Clock className="h-4 w-4" />}><input name="pickup_time" type="time" className="inp" /></F>
-            <F label="Rental Duration" icon={<Car className="h-4 w-4" />}><select name="duration" className="inp appearance-none"><option>6 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></F>
+            <F label="Rental Duration" icon={<Car className="h-4 w-4" />}><select name="duration" className="inp appearance-none"><option>4 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></F>
             <div className="md:col-span-2"><F label="Select Vehicle" icon={<Car className="h-4 w-4" />}><select name="vehicle" className="inp appearance-none"><option value="">Choose a vehicle</option>{CARS.map((c) => <option key={c.name}>{c.name}</option>)}</select><ChevronDown className="h-4 w-4" /></F></div>
             <label className="md:col-span-2">
               <span className="mb-2 flex items-center gap-2 text-sm font-semibold"><MessageSquare className="h-4 w-4" />Additional Requirements</span>

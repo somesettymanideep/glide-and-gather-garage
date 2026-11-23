@@ -37,10 +37,10 @@ export type Car = {
 };
 
 export const CARS: Car[] = [
-  { code: "MC105", name: "Toyota Innova Crysta", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3500, hourlyRates: { 4: 2500, 8: 3500, 12: 3500 }, img: innova, gallery: [innova, innovaFront], isRealFleet: true },
-  { code: "MC109", name: "Kia Carens", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3000, hourlyRates: { 4: 2000, 8: 3000, 12: 3500 }, img: carens, gallery: [carens, carensFront], isRealFleet: true },
-  { code: "MC110", name: "Toyota Urban Cruiser Ebella EV", type: "Electric SUV", category: "SUV", seats: 5, fuel: "Electric (EV)", transmission: "Automatic", price: 2800, hourlyRates: { 4: 2000, 8: 3000, 12: 3000 }, img: ebella, gallery: [ebella, ebellaFront], isRealFleet: true },
-  { code: "MC111", name: "Maruti Suzuki Swift Dzire", type: "Sedan", category: "Sedan", seats: 5, fuel: "Petrol", transmission: "Manual", price: 2000, hourlyRates: { 4: 2500, 8: 3500, 12: 3500 }, img: dzire, gallery: [dzire, dzireFront], isRealFleet: true },
+  { code: "MC105", name: "Toyota Innova", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3500, hourlyRates: { 4: 2500, 8: 3500, 12: 4000 }, img: innova, gallery: [innova, innovaFront], isRealFleet: true },
+  { code: "MC109", name: "Kia Carens", type: "SUV", category: "SUV", seats: 7, fuel: "Diesel", transmission: "Manual", price: 3500, hourlyRates: { 4: 2000, 8: 3500, 12: 4000 }, img: carens, gallery: [carens, carensFront], isRealFleet: true },
+  { code: "MC110", name: "Toyota Urban Cruiser Ebella EV", type: "Electric SUV", category: "SUV", seats: 5, fuel: "Electric (EV)", transmission: "Automatic", price: 2800, hourlyRates: { 4: 2000, 8: 3000, 12: 3500 }, img: ebella, gallery: [ebella, ebellaFront], isRealFleet: true },
+  { code: "MC111", name: "Maruti Suzuki Swift Dzire", type: "Sedan", category: "Sedan", seats: 5, fuel: "Petrol", transmission: "Manual", price: 2400, hourlyRates: { 4: 1500, 8: 2400, 12: 3500 }, img: dzire, gallery: [dzire, dzireFront], isRealFleet: true },
    { code: "MC112", name: "Force Urbania", type: "Luxury Van", category: "Luxury", seats: 13, fuel: "Diesel", transmission: "Manual", price: 5500, img: urbania, gallery: [urbania], isRealFleet: true },
 ];
 

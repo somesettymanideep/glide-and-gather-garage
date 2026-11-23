@@ -13,7 +13,7 @@ export const Route = createFileRoute("/cars")({
   head: () => ({
     meta: [
       { title: "Our Cars | Madhumitha Car Travels" },
-      { name: "description", content: "Sedans, SUVs, hatchbacks and luxury cars for 6, 12 or 24 hour rentals in Vijayawada." },
+      { name: "description", content: "Sedans, SUVs, hatchbacks and luxury cars for 4, 12 or 24 hour rentals in Vijayawada." },
       { property: "og:title", content: "Our Cars | Madhumitha Car Travels" },
       { property: "og:description", content: "Comfortable, reliable, well-maintained vehicles for every journey." },
       { property: "og:type", content: "website" },

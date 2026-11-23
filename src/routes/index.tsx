@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
       { title: "Madhumitha Car Travels | Car Rentals in Vijayawada" },
       { name: "description", content: "Comfortable, reliable and affordable car rentals, airport transfers and hourly packages in Vijayawada." },
       { property: "og:title", content: "Madhumitha Car Travels | Your Journey, Our Responsibility" },
-      { property: "og:description", content: "Book sedans, SUVs and hatchbacks for 6, 12 or 24 hours in Vijayawada." },
+      { property: "og:description", content: "Book sedans, SUVs and hatchbacks for 4, 12 or 24 hours in Vijayawada." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -54,7 +54,7 @@ const SERVICES = [
   { img: s1, Icon: Gauge, t: "Self-Drive Cars", d: "Enjoy the freedom of driving at your own pace with our options." },
   { img: s2, Icon: KeyRound, t: "Car Rental Services", d: "Convenient rental vehicles for personal, family and business travel." },
   { img: s3, Icon: Plane, t: "Airport Pickup & Drop", d: "Reliable airport transfers with comfortable transportation." },
-  { img: s4, Icon: Clock, t: "Hourly Car Rentals", d: "Flexible vehicle rentals with 6-hour, 12-hour and 24-hour packages." },
+  { img: s4, Icon: Clock, t: "Hourly Car Rentals", d: "Flexible vehicle rentals with 4-hour, 12-hour and 24-hour packages." },
 ];
 
 const WHY = [
@@ -112,7 +112,7 @@ function Home() {
             <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
             <Field icon={<User className="h-5 w-5" />}><input name="name" required maxLength={100} placeholder="Full Name" className="w-full min-w-0 bg-transparent outline-none" /></Field>
             <Field icon={<Phone className="h-5 w-5" />}><span className="font-semibold">+91</span><input name="phone" required type="tel" minLength={7} maxLength={20} placeholder="Phone Number" className="w-full min-w-0 bg-transparent outline-none" /></Field>
-            <Field icon={<Car className="h-5 w-5" />}><select name="duration" className="w-full appearance-none bg-transparent font-semibold outline-none"><option>6 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></Field>
+            <Field icon={<Car className="h-5 w-5" />}><select name="duration" className="w-full appearance-none bg-transparent font-semibold outline-none"><option>4 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></Field>
             <Field icon={<MapPin className="h-5 w-5" />}><input name="destination" maxLength={250} placeholder="Drop Location" className="w-full min-w-0 bg-transparent outline-none" /></Field>
             <Button type="submit" disabled={bookingBusy} className="h-auto rounded-lg bg-grad-red px-6 py-3 font-semibold text-accent-foreground"><Send className="h-4 w-4" />{bookingBusy ? "Saving…" : "Request a Booking"}</Button>
           </form>
