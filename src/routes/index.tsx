@@ -17,6 +17,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { CARS } from "@/components/site/data";
 import { CarCard } from "@/components/site/CarCard";
 import { FleetShowcase } from "@/components/site/FleetShowcase";
+import { PopularDestinations } from "@/components/site/PopularDestinations";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -184,6 +185,9 @@ function Home() {
           <FleetShowcase />
         </Reveal>
       </section>
+
+      {/* POPULAR DESTINATIONS */}
+      <PopularDestinations />
 
       {/* WHY CHOOSE US */}
       <section className="mx-auto max-w-7xl px-4 py-14 md:px-8">
