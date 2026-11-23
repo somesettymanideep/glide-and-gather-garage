@@ -27,6 +27,12 @@ describe("Car-specific booking", () => {
     expect(getRentalRate(car, hours)).toBe(price);
     expect(new URL(carBookingUrl(car, hours)).searchParams.get("text")).toContain(`for ${hours} hours at ₹${price.toLocaleString("en-IN")}`);
   });
+  it.each([[4, 2500], [8, 4000], [12, 5000]] as const)("charges Innova Crysta %i hours at ₹%i", (hours, price) => {
+    const car = getCar("MC113");
+    if (!car) throw new Error("Innova Crysta missing");
+    expect(getRentalRate(car, hours)).toBe(price);
+    expect(new URL(carBookingUrl(car, hours)).searchParams.get("text")).toContain(`for ${hours} hours at ₹${price.toLocaleString("en-IN")}`);
+  });
   it("calls the company's existing phone number", () => {
     expect(PHONE_LINK).toBe("tel:+917981872730");
   });
@@ -37,13 +43,14 @@ describe("Car-specific booking", () => {
     expect(url.searchParams.get("text")).toContain(`${car.name} (${car.code})`);
   });
   it("uses a different image for each car in the fleet", () => {
-    expect(CARS).toHaveLength(5);
-    expect(new Set(CARS.map((car) => car.img)).size).toBe(5);
+    expect(CARS).toHaveLength(6);
+    expect(new Set(CARS.map((car) => car.img)).size).toBe(6);
   });
   it("only contains real verified cars in the fleet", () => {
     expect(CARS.every((c) => c.isRealFleet)).toBe(true);
     expect(CARS.map((c) => c.name)).toEqual([
       "Toyota Innova",
+      "Toyota Innova Crysta",
       "Kia Carens",
       "Toyota Urban Cruiser Ebella EV",
       "Maruti Suzuki Swift Dzire",
@@ -52,6 +59,7 @@ describe("Car-specific booking", () => {
   });
   it("returns only the requested car and rejects unknown codes", () => {
     expect(getCar("MC105")?.name).toBe("Toyota Innova");
+    expect(getCar("MC113")?.name).toBe("Toyota Innova Crysta");
     expect(getCar("MC109")?.name).toBe("Kia Carens");
     expect(getCar("MC110")?.name).toBe("Toyota Urban Cruiser Ebella EV");
     expect(getCar("MC111")?.name).toBe("Maruti Suzuki Swift Dzire");

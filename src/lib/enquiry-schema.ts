@@ -9,7 +9,7 @@ export const enquirySchema = z.object({
   pickup: short, destination: short,
   pickup_date: z.union([z.string().regex(/^\d{4}-\d{2}-\d{2}$/), z.literal("")]).default(""),
   pickup_time: z.union([z.string().regex(/^\d{2}:\d{2}$/), z.literal("")]).default(""),
-  duration: z.enum(["4 Hours", "6 Hours", "12 Hours", "24 Hours"]).default("4 Hours"),
+  duration: z.enum(["4 Hours", "6 Hours", "8 Hours", "12 Hours", "24 Hours"]).default("4 Hours"),
   vehicle: short, message: z.string().trim().max(2000).default(""),
   website: z.string().max(0, "Unable to submit this enquiry").default(""),
 });

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Armchair, ArrowRight, Car, Handshake, Headphones, ShieldCheck } from "lucide-react";
+import { Armchair, ArrowRight, Car, Handshake, Headphones, IndianRupee, MapPin, ShieldCheck, User } from "lucide-react";
 import aboutBanner from "@/assets/about-banner.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -25,6 +25,15 @@ const HISTORY = [
   { y: "2021", t: "First Three Cars", d: "We hit the road with our first three cars, serving families, businesses and airport travellers across Vijayawada." },
   { y: "2025", t: "Almost 20 Cars", d: "Thanks to our customers' trust, the fleet grew to almost 20 well-maintained cars with 24/7 support." },
   { y: "Today", t: "Almost 50 Cars", d: "Today we run almost 50 cars — sedans, SUVs and luxury vehicles — ready for your next journey." },
+];
+
+const WHY = [
+  { Icon: ShieldCheck, red: true, t: "Safe & Secure Travel", d: "Your safety is our top priority" },
+  { Icon: Car, red: false, t: "Well-Maintained Vehicles", d: "Ride in comfort and style" },
+  { Icon: User, red: true, t: "Professional Drivers", d: "Experienced & courteous drivers" },
+  { Icon: Headphones, red: false, t: "24/7 Support", d: "Always here to assist you" },
+  { Icon: IndianRupee, red: true, t: "Affordable Pricing", d: "Best rates for every trip" },
+  { Icon: MapPin, red: false, t: "Flexible Travel Options", d: "Local, Outstation & More" },
 ];
 
 function AboutPage() {
@@ -58,6 +67,31 @@ function AboutPage() {
           </div>
           <Link to="/cars" className="mt-6 inline-flex items-center gap-2 rounded-full bg-grad-red px-6 py-3 text-sm font-semibold text-accent-foreground shadow-card">Explore Our Cars <ArrowRight className="h-4 w-4" /></Link>
         </Reveal>
+      </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="mx-auto max-w-7xl px-4 py-14 md:px-8">
+        <Reveal className="mb-10 text-center">
+          <div className="flex items-center justify-center gap-4">
+            <span className="hidden h-0.5 w-24 bg-primary sm:block" />
+            <h2 className="font-display text-3xl font-black italic md:text-4xl"><span className="text-primary">Why </span><span className="text-accent">Choose Us</span></h2>
+            <span className="hidden h-0.5 w-24 bg-primary sm:block" />
+          </div>
+          <p className="mt-2 text-sm font-medium md:text-base">Your Trusted Travel Partner for a Comfortable and Safe Journey</p>
+        </Reveal>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          {WHY.map((w, i) => (
+            <Reveal key={w.t} delay={i * 100}>
+              <div className="flex h-full flex-col items-center gap-3 rounded-2xl bg-card p-6 text-center shadow-card transition-transform hover:-translate-y-2">
+                <span className={`flex h-16 w-16 items-center justify-center rounded-full ${w.red ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary"}`}>
+                  <w.Icon className="h-8 w-8" />
+                </span>
+                <h3 className="text-sm font-bold text-primary">{w.t}</h3>
+                <p className="text-xs text-muted-foreground">{w.d}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       {/* OUR HISTORY */}

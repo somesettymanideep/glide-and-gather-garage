@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Headphones, Handshake, IndianRupee, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Gauge } from "lucide-react";
+import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Headphones, Handshake, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Gauge } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.png";
 import aboutBanner from "@/assets/about-banner.png";
@@ -59,14 +59,6 @@ const SERVICES = [
   { img: s4, Icon: Clock, t: "Hourly Car Rentals", d: "Flexible vehicle rentals with 4-hour, 12-hour and 24-hour packages." },
 ];
 
-const WHY = [
-  { Icon: ShieldCheck, red: true, t: "Safe & Secure Travel", d: "Your safety is our top priority" },
-  { Icon: Car, red: false, t: "Well-Maintained Vehicles", d: "Ride in comfort and style" },
-  { Icon: User, red: true, t: "Professional Drivers", d: "Experienced & courteous drivers" },
-  { Icon: Headphones, red: false, t: "24/7 Support", d: "Always here to assist you" },
-  { Icon: IndianRupee, red: true, t: "Affordable Pricing", d: "Best rates for every trip" },
-  { Icon: MapPin, red: false, t: "Flexible Travel Options", d: "Local, Outstation & More" },
-];
 
 const REVIEWS = [
   { q: "Excellent service! The car was clean and the driver was very professional. Highly recommended!", n: "Ramesh Kumar", c: "Vijayawada", img: avatarRamesh },
@@ -114,7 +106,7 @@ function Home() {
             <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
             <Field icon={<User className="h-5 w-5" />}><input name="name" required maxLength={100} placeholder="Full Name" className="w-full min-w-0 bg-transparent outline-none" /></Field>
             <Field icon={<Phone className="h-5 w-5" />}><span className="font-semibold">+91</span><input name="phone" required type="tel" minLength={7} maxLength={20} placeholder="Phone Number" className="w-full min-w-0 bg-transparent outline-none" /></Field>
-            <Field icon={<Car className="h-5 w-5" />}><select name="duration" className="w-full appearance-none bg-transparent font-semibold outline-none"><option>4 Hours</option><option>12 Hours</option><option>24 Hours</option></select><ChevronDown className="h-4 w-4" /></Field>
+            <Field icon={<Car className="h-5 w-5" />}><select name="duration" className="w-full appearance-none bg-transparent font-semibold outline-none"><option>4 Hours</option><option>8 Hours</option><option>12 Hours</option></select><ChevronDown className="h-4 w-4" /></Field>
             <Field icon={<MapPin className="h-5 w-5" />}><input name="destination" maxLength={250} placeholder="Drop Location" className="w-full min-w-0 bg-transparent outline-none" /></Field>
             <Button type="submit" disabled={bookingBusy} className="h-auto rounded-lg bg-grad-red px-6 py-3 font-semibold text-accent-foreground"><Send className="h-4 w-4" />{bookingBusy ? "Saving…" : "Request a Booking"}</Button>
           </form>
@@ -193,30 +185,6 @@ function Home() {
       {/* OUTSTATION TAXI FARES */}
       <OutstationFares />
 
-      {/* WHY CHOOSE US */}
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-8">
-        <Reveal className="mb-10 text-center">
-          <div className="flex items-center justify-center gap-4">
-            <span className="hidden h-0.5 w-24 bg-primary sm:block" />
-            <h2 className="font-display text-3xl font-black italic md:text-4xl"><span className="text-primary">Why </span><span className="text-accent">Choose Us</span></h2>
-            <span className="hidden h-0.5 w-24 bg-primary sm:block" />
-          </div>
-          <p className="mt-2 text-sm font-medium md:text-base">Your Trusted Travel Partner for a Comfortable and Safe Journey</p>
-        </Reveal>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          {WHY.map((w, i) => (
-            <Reveal key={w.t} delay={i * 100}>
-              <div className="flex h-full flex-col items-center gap-3 rounded-2xl bg-card p-6 text-center shadow-card transition-transform hover:-translate-y-2">
-                <span className={`flex h-16 w-16 items-center justify-center rounded-full ${w.red ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary"}`}>
-                  <w.Icon className="h-8 w-8" />
-                </span>
-                <h3 className="text-sm font-bold text-primary">{w.t}</h3>
-                <p className="text-xs text-muted-foreground">{w.d}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
 
       {/* TESTIMONIALS */}
       <section className="relative overflow-hidden py-14">
