@@ -54,16 +54,16 @@ jobs:
         with:
           path: .output/public
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
       - name: Push to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
-        if: success()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .output/public
           cname: madhumithacartravels.in
           keep_files: false
           enable_jekyll: false
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
