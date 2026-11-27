@@ -1,0 +1,1 @@
+import{o as e}from"./useSelector-D4oWBxsf.js";import{t}from"./cars_._carId-BcsnXly_.js";var n=e(),r=({reset:e})=>(0,n.jsx)(t,{retry:e});export{r as errorComponent};
