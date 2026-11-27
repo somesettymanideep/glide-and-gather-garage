@@ -436,13 +436,17 @@ export function OutstationFares() {
 
       {/* 4. SECTION FOOTER */}
       <Reveal className="mt-12 space-y-6">
-        {/* Informational Note */}
+        {/* Informational Note & Fare Inclusions */}
         <div className="flex items-start gap-3 rounded-xl border border-border/70 bg-brand-soft/50 p-4 text-xs text-muted-foreground sm:text-sm">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-          <p className="leading-relaxed">
-            All fares are starting prices and may vary depending on vehicle availability, travel date, trip type and
-            other applicable charges. Please contact us for the final quotation.
-          </p>
+          <div className="space-y-1 leading-relaxed">
+            <p className="font-semibold text-foreground">
+              Transparent Pricing & Inclusions:
+            </p>
+            <p>
+              Starting fares include vehicle rental, fuel charges, and chauffeur allowance. Toll plaza fees, parking tickets, and interstate border entry permits are charged at actuals. Zero hidden fees or surprise booking charges. Fares may vary during festival peaks or specialized route requests.
+            </p>
+          </div>
         </div>
 
         {/* CTA Banner: Need a Custom Travel Quote? */}

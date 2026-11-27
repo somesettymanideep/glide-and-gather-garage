@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Headphones, Handshake, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Gauge } from "lucide-react";
+import { ArrowRight, Car, ChevronDown, ChevronLeft, ChevronRight, Clock, Headphones, Handshake, KeyRound, MapPin, MessageSquareText, Phone, Plane, Quote, Send, ShieldCheck, Armchair, Star, User, Gauge, Map } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.png";
 import aboutBanner from "@/assets/about-banner.png";
@@ -19,21 +19,92 @@ import { CarCard } from "@/components/site/CarCard";
 import { FleetShowcase } from "@/components/site/FleetShowcase";
 import { PopularDestinations } from "@/components/site/PopularDestinations";
 import { OutstationFares } from "@/components/site/OutstationFares";
+import { FaqSection, FAQS } from "@/components/site/FaqSection";
+import { LocalSignals } from "@/components/site/LocalSignals";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { submitEnquiry } from "@/lib/enquiries.functions";
 import { enquiryFromForm } from "@/lib/enquiry-schema";
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": ["TaxiService", "AutoRental", "LocalBusiness"],
+  "name": "Madhumitha Car Travels",
+  "image": "https://madhumithacartravels.in/favicon.png",
+  "@id": "https://madhumithacartravels.in/#localbusiness",
+  "url": "https://madhumithacartravels.in",
+  "telephone": "+917981872730",
+  "priceRange": "₹1500 - ₹9500",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Sector 01, Road No. 05, Plot No. 41, Lotus Landmark, Near Model Dairy, Ayodhya Nagar",
+    "addressLocality": "Vijayawada",
+    "addressRegion": "Andhra Pradesh",
+    "postalCode": "520003",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 16.5193,
+    "longitude": 80.6305
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "areaServed": [
+    { "@type": "City", "name": "Vijayawada" },
+    { "@type": "City", "name": "Gannavaram" },
+    { "@type": "City", "name": "Guntur" },
+    { "@type": "AdministrativeArea", "name": "Andhra Pradesh" },
+    { "@type": "AdministrativeArea", "name": "Telangana" }
+  ],
+  "sameAs": [
+    "https://maps.google.com/?q=Ayodhya+Nagar+Vijayawada"
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQS.map((faq) => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Madhumitha Car Travels | Car Rentals in Vijayawada" },
-      { name: "description", content: "Comfortable, reliable and affordable car rentals, airport transfers and hourly packages in Vijayawada." },
-      { property: "og:title", content: "Madhumitha Car Travels | Your Journey, Our Responsibility" },
-      { property: "og:description", content: "Book sedans, SUVs and hatchbacks for 4, 12 or 24 hours in Vijayawada." },
+      { title: "Car Travels in Vijayawada: Hourly Rentals & Outstation Cabs | Madhumitha" },
+      { name: "description", content: "Madhumitha Car Travels offers car rentals, airport pickup and drop, and outstation taxis from Vijayawada to Hyderabad, Vizag and more. Check fares and book on WhatsApp." },
+      { property: "og:title", content: "Car Travels in Vijayawada: Hourly Rentals & Outstation Cabs | Madhumitha" },
+      { property: "og:description", content: "Madhumitha Car Travels offers car rentals, airport pickup and drop, and outstation taxis from Vijayawada to Hyderabad, Vizag and more. Check fares and book on WhatsApp." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://madhumithacartravels.in/" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://madhumithacartravels.in/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(localBusinessSchema),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(faqSchema),
+      },
     ],
   }),
   component: Home,
@@ -53,17 +124,16 @@ function SectionTitle({ a, b, sub }: { a: string; b: string; sub: string }) {
 }
 
 const SERVICES = [
-  { img: s1, Icon: Gauge, t: "Self-Drive Cars", d: "Enjoy the freedom of driving at your own pace with our options." },
-  { img: s2, Icon: KeyRound, t: "Car Rental Services", d: "Convenient rental vehicles for personal, family and business travel." },
-  { img: s3, Icon: Plane, t: "Airport Pickup & Drop", d: "Reliable airport transfers with comfortable transportation." },
-  { img: s4, Icon: Clock, t: "Hourly Car Rentals", d: "Flexible vehicle rentals with 4-hour, 12-hour and 24-hour packages." },
+  { img: s4, Icon: Clock, t: "Hourly Car Rentals", d: "Flexible city vehicle rentals with transparent 4-hour, 8-hour, and 12-hour packages.", to: "#hourly-packages" },
+  { img: s3, Icon: Plane, t: "Airport Pickup & Drop", d: "24/7 punctual Vijayawada (Gannavaram - VGA) airport pickup and drop taxi service.", to: "/contact" },
+  { img: s2, Icon: KeyRound, t: "Outstation Taxi Service", d: "Comfortable one-way drops and round trips to Hyderabad, Vizag, Rajahmundry & more.", to: "#outstation-fares" },
+  { img: s1, Icon: Map, t: "Sightseeing City Tours", d: "Curated city day tours to Kanaka Durga Temple, Prakasam Barrage & Bhavani Island.", to: "#popular-destinations" },
 ];
 
-
 const REVIEWS = [
-  { q: "Excellent service! The car was clean and the driver was very professional. Highly recommended!", n: "Ramesh Kumar", c: "Vijayawada", img: avatarRamesh },
-  { q: "A very reliable car rental service. Safe journey and very good support team. Keep it up!", n: "Priya Sharma", c: "Hyderabad", img: avatarPriya },
-  { q: "Affordable pricing and comfortable ride. Will book again for our next trip.", n: "Srinivas Rao", c: "Vijayawada", img: avatarSrinivas },
+  { q: "Booked a Toyota Innova for an outstation trip from Vijayawada to Hyderabad. The car was spotless, driver satyanarayana was punctual and drove very safely. Highly recommended car travels in Vijayawada!", n: "Ramesh Kumar", c: "Benz Circle, Vijayawada", img: avatarRamesh },
+  { q: "Punctual early-morning airport pickup at Gannavaram Airport (VGA). Seamless WhatsApp booking, clear transparent rates with no surprise charges. Best taxi service in Vijayawada.", n: "Priya Sharma", c: "Gannavaram Airport Traveler", img: avatarPriya },
+  { q: "We took the 8-hour Dzire package for local Vijayawada sightseeing covering Kanaka Durga Temple, Mangalagiri and Undavalli Caves. AC was perfect and driver was very courteous.", n: "Srinivas Rao", c: "Governorpet, Vijayawada", img: avatarSrinivas },
 ];
 
 function Home() {
@@ -75,21 +145,24 @@ function Home() {
       <SiteHeader />
 
       {/* HERO */}
-      <section className="relative min-h-[440px] pt-24 md:min-h-[500px]">
+      <section className="relative min-h-[460px] pt-24 md:min-h-[520px]">
         <img src={hero} alt="Car on a riverside road near a temple and bridge" className="absolute inset-0 h-full w-full object-cover object-right" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent md:via-background/50" />
         <div className="relative mx-auto max-w-7xl px-4 pt-8 md:px-8 md:pt-12">
-          <h1 className="hero-in font-display text-3xl font-black italic leading-[1.05] md:text-5xl">
-            <span className="block text-primary">Your Journey,</span>
-            <span className="block text-accent">Our Responsibility.</span>
+          <h1 className="hero-in font-display text-3xl font-black italic leading-[1.1] md:text-5xl">
+            <span className="block text-primary">Car Travels in Vijayawada:</span>
+            <span className="mt-1 block text-2xl text-accent md:text-4xl">Car Rentals, Airport Transfers &amp; Outstation Cabs</span>
           </h1>
-          <span className="hero-in mt-3 block h-1 w-60 rounded-full bg-primary" style={{ animationDelay: ".15s" }} />
-          <p className="hero-in mt-5 max-w-md text-base font-semibold md:text-lg" style={{ animationDelay: ".25s" }}>
-            Experience comfortable, reliable and affordable car travel with Madhumitha Car Travels. Wherever life takes you, travel with confidence.
+          <p className="hero-in mt-3 font-display text-lg font-bold italic text-primary/95 md:text-xl">
+            Your Journey, Our Responsibility.
+          </p>
+          <span className="hero-in mt-2 block h-1 w-60 rounded-full bg-primary" style={{ animationDelay: ".15s" }} />
+          <p className="hero-in mt-4 max-w-xl text-base font-medium md:text-lg" style={{ animationDelay: ".25s" }}>
+            Experience comfortable, reliable, and affordable travel with Madhumitha Car Travels. Offering 4, 8, and 12-hour hourly rentals, Vijayawada (Gannavaram) airport taxi transfers, and outstation trips with verified professional chauffeurs.
           </p>
           <div className="hero-in mt-7 flex flex-wrap gap-4" style={{ animationDelay: ".4s" }}>
             <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-grad-red px-6 py-3 font-semibold text-accent-foreground shadow-card transition-transform hover:-translate-y-0.5">Book Your Car <ArrowRight className="h-4 w-4" /></Link>
-            <Link to="/cars" className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-background/80 px-6 py-3 font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground">Explore Our Cars <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/cars" className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-background/80 px-6 py-3 font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground">Explore Our Cars &amp; Rates <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </div>
       </section>
@@ -125,7 +198,7 @@ function Home() {
         <Reveal>
           <p className="flex items-center gap-2 text-sm font-bold tracking-wide text-accent">— ABOUT US <span className="h-px w-32 bg-accent" /></p>
           <h2 className="mt-2 font-display text-3xl font-black italic md:text-4xl"><span className="text-accent">Travel </span><span className="text-primary">Beyond</span> <span className="text-accent">Expectations</span></h2>
-          <p className="mt-4 text-sm leading-relaxed">Madhumitha Car Travels is your trusted travel partner for safe, comfortable and affordable journeys. We are committed to delivering reliable transportation services with customer satisfaction at the heart.</p>
+          <p className="mt-4 text-sm leading-relaxed">Madhumitha Car Travels is your trusted travel partner for safe, comfortable and affordable journeys in Vijayawada. We are committed to delivering reliable transportation services with customer satisfaction at heart.</p>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[[ShieldCheck, "Customer Satisfaction"], [Armchair, "Comfortable Journeys"], [Handshake, "Reliable Service"], [Headphones, "Professional Support"]].map(([I, t]) => {
               const Icon = I as typeof ShieldCheck;
@@ -136,13 +209,13 @@ function Home() {
               );
             })}
           </div>
-          <Link to="/cars" className="mt-6 inline-flex items-center gap-2 rounded-full bg-grad-red px-6 py-3 text-sm font-semibold text-accent-foreground shadow-card">Discover Our Story <ArrowRight className="h-4 w-4" /></Link>
+          <Link to="/about" className="mt-6 inline-flex items-center gap-2 rounded-full bg-grad-red px-6 py-3 text-sm font-semibold text-accent-foreground shadow-card">Discover Our Story <ArrowRight className="h-4 w-4" /></Link>
         </Reveal>
       </section>
 
       {/* SERVICES */}
-      <section className="mx-auto max-w-7xl px-4 py-10 md:px-8">
-        <SectionTitle a="Travel Solutions" b="Designed Around You" sub="Flexible car travel services for every destination and occasion." />
+      <section id="services" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-10 md:px-8">
+        <SectionTitle a="Travel Solutions" b="Designed Around You" sub="Flexible car travel services in Vijayawada for every destination and occasion." />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map((s, i) => (
             <Reveal key={s.t} delay={i * 120}>
@@ -152,7 +225,11 @@ function Home() {
                   <span className="absolute -top-7 left-1/2 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full border-4 border-card bg-grad-green text-primary-foreground"><s.Icon className="h-6 w-6" /></span>
                   <h3 className="font-semibold text-primary">{s.t}</h3>
                   <p className="mt-1 text-xs text-muted-foreground">{s.d}</p>
-                  <Link to="/cars" className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-accent">Explore Service <ArrowRight className="h-3 w-3" /></Link>
+                  {s.to.startsWith("#") ? (
+                    <a href={s.to} className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-accent">Explore Service <ArrowRight className="h-3 w-3" /></a>
+                  ) : (
+                    <Link to={s.to as any} className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-accent">Explore Service <ArrowRight className="h-3 w-3" /></Link>
+                  )}
                 </div>
               </article>
             </Reveal>
@@ -160,9 +237,9 @@ function Home() {
         </div>
       </section>
 
-      {/* FLEET */}
-      <section className="mx-auto max-w-7xl px-4 py-10 md:px-8">
-        <SectionTitle a="Find the Perfect" b="Car for Your Journey" sub="Choose from our range of comfortable and well-maintained vehicles." />
+      {/* FLEET / HOURLY PACKAGES */}
+      <section id="hourly-packages" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-10 md:px-8">
+        <SectionTitle a="Find the Perfect" b="Car for Your Journey" sub="Choose from our range of comfortable, well-maintained vehicles with flexible 4, 8 and 12-hour packages." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {CARS.map((c, i) => (
             <Reveal key={c.code} delay={(i % 3) * 120}>
@@ -180,11 +257,20 @@ function Home() {
       </section>
 
       {/* POPULAR DESTINATIONS */}
-      <PopularDestinations />
+      <div id="popular-destinations" className="scroll-mt-24">
+        <PopularDestinations />
+      </div>
 
       {/* OUTSTATION TAXI FARES */}
-      <OutstationFares />
+      <div id="outstation-fares" className="scroll-mt-24">
+        <OutstationFares />
+      </div>
 
+      {/* FREQUENTLY ASKED QUESTIONS */}
+      <FaqSection />
+
+      {/* LOCAL OFFICE & MAP SIGNALS */}
+      <LocalSignals />
 
       {/* TESTIMONIALS */}
       <section className="relative overflow-hidden py-14">

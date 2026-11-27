@@ -83,12 +83,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Madhumitha Car Travels" },
-      { name: "description", content: "Comfortable, reliable car rentals in Vijayawada." },
-      
+      { title: "Car Travels in Vijayawada: Hourly Rentals & Outstation Cabs | Madhumitha" },
+      { name: "description", content: "Madhumitha Car Travels offers car rentals, airport pickup and drop, and outstation taxis from Vijayawada to Hyderabad, Vizag and more. Check fares and book on WhatsApp." },
+      { property: "og:site_name", content: "Madhumitha Car Travels" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      
     ],
     links: [
       {
@@ -96,6 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "canonical", href: "https://madhumithacartravels.in/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Rubik:wght@400;500;600;700&display=swap" },
     ],

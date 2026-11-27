@@ -15,12 +15,16 @@ import { ADDRESS, CARS, EMAIL, PHONE, PHONE_LINK } from "@/components/site/data"
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Booking | Madhumitha Car Travels" },
-      { name: "description", content: "Call, email or send a booking enquiry to Madhumitha Car Travels, Vijayawada." },
-      { property: "og:title", content: "Let's Plan Your Next Journey | Madhumitha Car Travels" },
-      { property: "og:description", content: "Send a booking enquiry and we'll get back to you soon." },
+      { title: "Contact & Car Booking in Vijayawada | Madhumitha Car Travels" },
+      { name: "description", content: "Book a taxi in Vijayawada with Madhumitha Car Travels. 24/7 customer support, instant WhatsApp booking, and office at Ayodhya Nagar, Vijayawada." },
+      { property: "og:title", content: "Contact & Booking | Madhumitha Car Travels Vijayawada" },
+      { property: "og:description", content: "Call +91 7981872730 or send a booking enquiry for local rentals, airport transfers, and outstation trips." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://madhumithacartravels.in/contact" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://madhumithacartravels.in/contact" },
     ],
   }),
   component: ContactPage,

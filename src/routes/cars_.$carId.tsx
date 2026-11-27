@@ -18,7 +18,7 @@ export const Route = createFileRoute("/cars_/$carId")({
     const loaderData = car ? { car } : undefined;
     const title = loaderData ? `${loaderData.car.name} | Madhumitha Car Travels` : "Car unavailable | Madhumitha Car Travels";
     const description = loaderData ? `Explore ${loaderData.car.name}: ${loaderData.car.seats} seats, ${loaderData.car.fuel}, ${loaderData.car.transmission} and air conditioning. Enquire about daily rentals in Vijayawada on WhatsApp.` : "Explore the fleet at Madhumitha Car Travels.";
-    const url = loaderData ? `https://glide-and-gather-garage.lovable.app/cars/${loaderData.car.code}` : undefined;
+    const url = loaderData ? `https://madhumithacartravels.in/cars/${loaderData.car.code}` : undefined;
     return {
       meta: [{ title }, { name: "description", content: description }, { property: "og:title", content: title }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }, ...(url ? [{ property: "og:url", content: url }] : [{ name: "robots", content: "noindex" }])],
       links: url ? [{ rel: "canonical", href: url }] : [],

@@ -12,12 +12,16 @@ import { CarCard } from "@/components/site/CarCard";
 export const Route = createFileRoute("/cars")({
   head: () => ({
     meta: [
-      { title: "Our Cars | Madhumitha Car Travels" },
-      { name: "description", content: "Sedans, SUVs, hatchbacks and luxury cars for 4, 12 or 24 hour rentals in Vijayawada." },
-      { property: "og:title", content: "Our Cars | Madhumitha Car Travels" },
-      { property: "og:description", content: "Comfortable, reliable, well-maintained vehicles for every journey." },
+      { title: "Our Fleet & Taxi Rates in Vijayawada | Madhumitha Car Travels" },
+      { name: "description", content: "Rent sedans, 7-seater SUVs and luxury vans in Vijayawada. Transparent 4, 8 & 12 hour packages for Swift Dzire, Toyota Innova, Kia Carens, and Force Urbania." },
+      { property: "og:title", content: "Our Fleet & Taxi Rates in Vijayawada | Madhumitha Car Travels" },
+      { property: "og:description", content: "Comfortable, clean, well-maintained vehicles for local and outstation journeys from Vijayawada." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://madhumithacartravels.in/cars" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://madhumithacartravels.in/cars" },
     ],
   }),
   component: CarsPage,

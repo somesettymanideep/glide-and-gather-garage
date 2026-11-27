@@ -9,12 +9,16 @@ import { Reveal } from "@/components/site/Reveal";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us | Madhumitha Car Travels" },
-      { name: "description", content: "Our story — from three cars in 2021 to a fleet of almost 50 cars serving Vijayawada with safe, comfortable travel." },
-      { property: "og:title", content: "About Us | Madhumitha Car Travels" },
-      { property: "og:description", content: "The journey of Madhumitha Car Travels, mile by mile." },
+      { title: "About Us | Madhumitha Car Travels Vijayawada" },
+      { name: "description", content: "Madhumitha Car Travels is Vijayawada's trusted car rental service offering chauffeur-driven cabs, airport transfers, and outstation trips with 5+ years experience." },
+      { property: "og:title", content: "About Us | Madhumitha Car Travels Vijayawada" },
+      { property: "og:description", content: "Learn about Madhumitha Car Travels: fleet quality, professional drivers, and 24/7 travel service in Vijayawada." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://madhumithacartravels.in/about" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://madhumithacartravels.in/about" },
     ],
   }),
   component: AboutPage,
